@@ -4,8 +4,10 @@ require('dotenv').config();
 let sequelize;
 
 if (process.env.JAWSDB_URL) {
+  console.log("Initializing JawsDB connection");
   sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {
+  console.log("Initializing Local MySQL connection");
   sequelize = new Sequelize(
     process.env.DB_NAME,
     process.env.DB_USER,

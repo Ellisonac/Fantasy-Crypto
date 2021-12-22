@@ -18,10 +18,10 @@ Challenge.init(
         allowNull: false,
     },
     time_start: {
-        type: DataTypes.DATETIME
+        type: DataTypes.DATE
     },
     time_end: {
-        type: DataTypes.DATETIME
+        type: DataTypes.DATE
     },
     status: {
         type: DataTypes.STRING

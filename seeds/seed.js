@@ -16,16 +16,21 @@ const seedDatabase = async () => {
 
   const statuses = ["Open","Closed","Ended"]
   let challenges = [];
-  for (let ii = 0; ii < 10; ii++) {
+  for (let ii = 0; ii < 5; ii++) {
     const capital = Math.floor(Math.random()*100000);
-    const day = Math.floor(Math.random()*31);
-    const time_start = new Date(`December ${day},2021 00:00:00`);
-    const time_end = new Date(`December ${day},2021 23:59:59`);
+    const day = Math.floor(Math.random()*30)+1;
+    const time_start = new Date(`December ${day}, 2021 00:00:00`);
+    const time_end = new Date(`December ${day}, 2021 23:59:59`);
     const status = statuses[Math.floor(Math.random()*statuses.length)];
-    const chall = await Challenge.create({
-      capital,time_start,time_end,status
-    });
-    challenges.push(chall);
+    const chall = await Challenge.create(
+      {
+        capital,time_start,time_end,status
+      },
+      {
+        returning: true,
+      }
+    );
+    challenges.push(chall.get({ plain: true }));
   }
 
   // const challenges = await Challenge.bulkCreate(challengeData, {
@@ -33,14 +38,19 @@ const seedDatabase = async () => {
   //   returning: true,
   // });
 
-  const coins = await Coin.bulkCreate(coinData, {
+  const allCoins = await Coin.bulkCreate(coinData, {
     individualHooks: true,
     returning: true,
   });
 
+  const coins = allCoins.map(coin=> coin.get({ plain: true }));
+
+  console.log(coins,challenges);
+
   // Populate each coins value for each challenge example
-  for (const challenge in challenges) {
-    for (const coin in coins) {
+  for (const challenge of challenges) {
+    for (const coin of coins) {
+      console.log(coin.id,challenge.id);
       await Challenge_Coin_Data.create({
         challenge_id: challenge.id,
         coin_id: coin.id,
@@ -61,8 +71,8 @@ const seedDatabase = async () => {
   }
 
   // Populate random portfolio amounts
-  for (const portfolio in portfolios) {
-    for (const coin in coins) {
+  for (const portfolio of portfolios) {
+    for (const coin of coins) {
       await Portfolio_Coin_Entry.create({
         portfolio_id: portfolio.id,
         coin_id: coin.id,
