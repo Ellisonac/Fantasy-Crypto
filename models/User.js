@@ -29,9 +29,11 @@ User.init(
     },
     wins:{
         type: DataTypes.INTEGER,
+        defaultValue: 0
     },
     losses:{
         type: DataTypes.INTEGER,
+        defaultValue: 0
     },
   },
   {

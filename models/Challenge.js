@@ -13,7 +13,7 @@ Challenge.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    starting_captial:{
+    capital:{
         type: DataTypes.INTEGER,
         allowNull: false,
     },
