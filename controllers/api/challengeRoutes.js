@@ -1,3 +1,5 @@
+const { Challenge, Portfolio, Challenge_Coin_Data } = require('../../models');
+
 const router = require('express').Router();
 
 router.get('/', async (req, res) => {
@@ -30,11 +32,14 @@ router.get('/:id', async (req, res) => {
   try {
     // Get challenge by ID
     const challengeData = await Challenge.findByPk({
-      // include: [
-      //   {
-      //     model: Challenge,
-      //   },
-      // ],
+      include: [
+        {
+          model: Portfolio,
+        },
+        {
+          model: Challenge_Coin_Data
+        }
+      ],
     });
 
     // Serialize data so the template can read it
