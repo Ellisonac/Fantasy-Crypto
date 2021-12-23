@@ -26,7 +26,7 @@ Challenge_Coin_Data.belongsTo(Challenge,{
 });
 
 Portfolio.belongsTo(Challenge, {
-    foreignKey: 'challnge_id'
+    foreignKey: 'challenge_id'
 });
 
 Portfolio.belongsTo(User, {

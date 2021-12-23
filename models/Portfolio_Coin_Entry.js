@@ -28,7 +28,7 @@ Portfolio_Coin_Entry.init(
         },
     },
     amount:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL,
         allowNull: false,
     },
   },
