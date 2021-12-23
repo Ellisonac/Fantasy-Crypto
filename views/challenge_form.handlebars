@@ -1,0 +1,11 @@
+<form class="challenge-form">
+  <div class="form-group">
+    <h2>Enter Challenge {{challenge.id}}</h2>
+    {{#each coins as |coin|}}
+      <label for="coin{{coin.id}}">{{coin.name}} ({{coin.ticker_symbol}})</label>
+      <input type="number" class="form-control coin-input-amount" id="coin{{coin.id}}" aria-describedby="coin{{coin.id}}Input" placeholder="0.0" data-id={{coin.id}}>
+      <br/>
+    {{/each}}
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<script src="submitPortfolio.js"></script>
