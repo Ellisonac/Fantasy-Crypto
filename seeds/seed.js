@@ -44,12 +44,9 @@ const seedDatabase = async () => {
 
   const coins = allCoins.map((coin) => coin.get({ plain: true }));
 
-  console.log(coins, challenges);
-
   // Populate each coins value for each challenge example
   for (const challenge of challenges) {
     for (const coin of coins) {
-      console.log(coin.id, challenge.id);
       await Challenge_Coin_Data.create({
         challenge_id: challenge.id,
         coin_id: coin.id,
