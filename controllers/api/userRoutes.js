@@ -1,26 +1,18 @@
 const router = require('express').Router();
+const { User } = require('../../models');
 
+//Creates new user and adds to  User table
 router.get('/', async (req, res) => {
   try {
-    // Get all projects and JOIN with user data
-    const userData = await User.findAll({
-      include: [
-        // {
-        //   model: Challenge,
-        // },
-      ],
-    });
+    const userData = await User.create(req.body);
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
 
-    // Serialize data so the template can read it
-    const users = userData.map((user) => user.get({ plain: true }));
-
-    // Pass serialized data and session flag into template
-    res.render('allUsers', { 
-      users, 
-      // logged_in: req.session.logged_in 
+      res.status(200).json(userData);
     });
   } catch (err) {
-    res.status(500).json(err);
+    res.status(400).json(err);
   }
 });
 
