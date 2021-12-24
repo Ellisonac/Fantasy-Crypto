@@ -4,7 +4,7 @@ const router = require('express').Router();
 
 router.get('/challenge/:id', async (req, res) => {
   try {
-    let challenge = await Challenge.findByPk(req.params.id, {
+    const challengeData = await Challenge.findByPk(req.params.id, {
       include: [
         {
           model: Challenge_Coin_Data
@@ -12,7 +12,9 @@ router.get('/challenge/:id', async (req, res) => {
       ]
     });
 
-    let coinData = await Coin.findAll();
+    const challenge = challengeData.get({ plain: true });
+
+    const coinData = await Coin.findAll();
 
     const coins = coinData.map((coin) =>
       coin.get({ plain: true })
