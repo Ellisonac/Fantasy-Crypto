@@ -3,6 +3,6 @@ const userRoutes = require('./userRoutes');
 const challengeRoutes = require('./challengeRoutes');
 
 router.use('/users', userRoutes);
-router.use('/challenge', challengeRoutes);
+router.use('/challenges', challengeRoutes);
 
 module.exports = router;
