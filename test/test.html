@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registry</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+  <header>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/">Leaderboard</a></li>
+      <li><a href="/">Login</a></li>
+      <li><a href="/">Sign-up</a></li>
+    </ul>
+  </header>
+  <h2>Login</h2>
+
+  <form class="form login-form">
+    <div class="form-group">
+      <label for="email-login">email:</label>
+      <input class="form-input" type="text" id="email-login" />
+    </div>
+    <div class="form-group">
+      <label for="password-login">password:</label>
+      <input class="form-input" type="password" id="password-login" />
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary" type="submit">login</button>
+    </div>
+  </form>
+  <button class="btn btn-danger"> <a href="/newuser">Sign Up</a></button>
+  
+  <script src="../public/js/login.js"></script>
+  <footer>
+     <p>@Copyright Fantasy-Crypto</p>
+  </footer>
+</body>
+
+</html>
