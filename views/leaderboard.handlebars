@@ -1,11 +1,12 @@
-<div class="card">
+<div class="card p-2">
   <h2>Leaderboard!</h2>
+  <p>Closed Challenge Results</p>
   <ul>
     {{#each challenges as |challenge|}}
-      <li class="card">
+      <li class="card p-2 m-1">
         <h2>Challenge {{challenge.id}}</h2>
         <p>Top User: {{challenge.topPortfolio.user_id}}</p>
-        <p>Top Portfolio Value: {{challenge.maxValue}}</p>
+        <p>Top Portfolio Gains: {{challenge.maxGain}}</p>
       </li>
     {{/each}}
   </ul>

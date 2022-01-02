@@ -2,24 +2,32 @@ const getCoinValues = (challengeCoins) => {};
 
 const evaluatePortfolio = (portfolioEntries, coins) => {
   let values = [];
-  let total = 0;
+  let currentTotal = 0;
+  let startTotal = 0;
   for (const entry of portfolioEntries) {
     const amount = parseFloat(entry.amount);
     const coinValues = coins.filter((coin) => coin.coin_id == entry.coin_id)[0];
-    const coinValue = amount * parseFloat(coinValues.start_value);
+    const startValue = parseFloat(coinValues.start_value);
+    const endValue = parseFloat(coinValues.end_value);
+
+    currentTotal += amount * endValue;
+    startTotal += amount * startValue;
+
     values.push({
       id: coinValues.coin_id,
+      name: coinValues.coin.name,
       amount,
-      coinValue,
+      startValue,
+      endValue,
     });
-    total += amount * coinValue;
   }
-  console.log(total);
+
   return {
     values,
-    total,
+    startValue: startTotal,
+    currentValue: currentTotal,
+    gain: currentTotal - startTotal,
   };
-
 };
 
 module.exports = {

@@ -66,6 +66,15 @@ router.get("/portfolio/:id", async (req, res) => {
         {
           model: Portfolio_Coin_Entry,
         },
+        {
+          model: Challenge,
+          include: [{
+            model: Challenge_Coin_Data,
+            include: [{
+              model: Coin
+            }]
+          }]
+        }
       ],
     });
 
@@ -77,39 +86,17 @@ router.get("/portfolio/:id", async (req, res) => {
 
     const portfolioEntries = portfolio.portfolio_coin_entries;
 
-    const coinEntryData = await Challenge_Coin_Data.findAll({
-      where: {
-        challenge_id: portfolioData.challenge_id,
-      },
-    });
+    const coinEntries = portfolio.challenge.challenge_coin_data;
 
-    const coinEntries = coinEntryData.map((coin) => coin.get({ plain: true }));
-
-    const coinData = await Coin.findAll();
-
-    const coinLookup = coinData.map((coin) => coin.get({ plain: true }));
-
-    // Build coins database
-    let coins = [];
-    for (const entry of portfolioEntries) {
-      const amount = parseInt(entry.amount);
-      const coinValues = coinEntries.filter(
-        (coin) => coin.coin_id == entry.coin_id
-      )[0];
-      const value = amount * parseFloat(coinValues.start_value);
-      const coin_name = coinLookup[entry.coin_id - 1].name;
-      coins.push({
-        id: coinLookup[entry.coin_id - 1].id,
-        name: coin_name,
-        amount,
-        value,
-      });
-    }
+    const coins = evaluatePortfolio(portfolioEntries,coinEntries);
 
     res.render("portfolio", {
       portfolio: portfolio,
-      coinEntries: coins,
+      coinEntries: coins.values,
+      startValue: coins.startValue,
+      currentValue: coins.currentValue
     });
+
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -175,22 +162,20 @@ router.get("/leaderboard", async (req,res) => {
         continue
       }
 
-      const coinValues = getCoinValues(challenge.challenge_coin_data)
+      // const coinValues = getCoinValues(challenge.challenge_coin_data)
 
-      challenge.maxValue = 0;
+      challenge.maxGain = -10000;
       for (const portfolio of challenge.portfolios) {
         const evaluation = evaluatePortfolio(portfolio.portfolio_coin_entries, challenge.challenge_coin_data);
 
-        if (evaluation.total > challenge.maxValue) {
-          challenge.maxValue = evaluation.total;
+        if (evaluation.gain > challenge.maxGain) {
+          challenge.maxGain = evaluation.gain;
           challenge.topPortfolio = portfolio
         }
       }
 
       closedChallenges.push(challenge);
     }
-
-    console.log(closedChallenges);
 
     res.render("leaderboard",{
       challenges: closedChallenges
