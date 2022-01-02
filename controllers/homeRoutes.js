@@ -1,14 +1,17 @@
+const { render } = require("express/lib/response");
 const {
   Challenge,
   Challenge_Coin_Data,
   Coin,
   Portfolio,
   Portfolio_Coin_Entry,
+  User,
 } = require("../models");
+const { evaluatePortfolio, getCoinValues } = require("../utils/calculations");
 
 const router = require("express").Router();
 
-router.get("/challenge/", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const challengeData = await Challenge.findAll();
 
@@ -112,5 +115,91 @@ router.get("/portfolio/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+router.get('/profile/', async (req,res) => {
+  try {
+
+    // TEST ONLY
+    if (!req.session.user_id) {
+      req.session.user_id = 3;
+    }
+
+
+    const userData = await User.findByPk(req.session.user_id, {
+      include: [
+        {
+          model: Portfolio
+        }
+      ]
+    });
+
+    const user = userData.get({ plain: true })
+
+    console.log(user);
+
+    res.render("profile",{
+      user,
+      portfolios: user.portfolios
+    });
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+})
+
+router.get("/leaderboard", async (req,res) => {
+  try {
+    const challengeData = await Challenge.findAll({
+      include: [
+        {
+          model: Portfolio,
+          include: {
+            model: Portfolio_Coin_Entry
+          }
+        },
+        {
+          model: Challenge_Coin_Data,
+          include: {
+            model: Coin
+          }
+        },
+      ]
+    });
+
+    const challenges = challengeData.map(challenge => challenge.get({ plain: true }));
+
+    let closedChallenges = [];
+    for (const challenge of challenges) {
+      if (challenge.status !== 'Ended' || !challenge.portfolios) {
+        continue
+      }
+
+      const coinValues = getCoinValues(challenge.challenge_coin_data)
+
+      challenge.maxValue = 0;
+      for (const portfolio of challenge.portfolios) {
+        const evaluation = evaluatePortfolio(portfolio.portfolio_coin_entries, challenge.challenge_coin_data);
+
+        if (evaluation.total > challenge.maxValue) {
+          challenge.maxValue = evaluation.total;
+          challenge.topPortfolio = portfolio
+        }
+      }
+
+      closedChallenges.push(challenge);
+    }
+
+    console.log(closedChallenges);
+
+    res.render("leaderboard",{
+      challenges: closedChallenges
+    })
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+})
 
 module.exports = router;
