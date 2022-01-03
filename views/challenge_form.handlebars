@@ -2,10 +2,12 @@
   <div class="form-group">
     <h2>Enter Challenge {{challenge.id}} - Capital {{challenge.capital}}</h2>
     {{#each coinEntries as |coin|}}
+    <div class="card p-2 m-1 coin-inputs">
       <label for="coin{{coin.id}}">{{coin.name}} ({{coin.ticker_symbol}})</label>
       <input type="number" class="form-control coin-input-amount" id="coin{{coin.id}}" aria-describedby="coin{{coin.id}}Input" placeholder="0.0" data-id="{{coin.id}}">
       <p>Start Value: {{coin.start_value}}</p>
       <br/>
+    </div>
     {{/each}}
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

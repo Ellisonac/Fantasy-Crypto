@@ -1,5 +1,7 @@
 let challengeForm = document.querySelector(".challenge-form");
 let inputs = document.querySelectorAll(".coin-input-amount");
+let inputForms = document.querySelectorAll(".coin-inputs");
+let challengeFormButton = document.querySelector(".challenge-form button");
 
 const addPortfolio = async (e) => {
   e.preventDefault();
@@ -17,10 +19,13 @@ const addPortfolio = async (e) => {
     headers: { "Content-Type": "application/json" },
   });
 
+  console.log(response);
+
+  challengeFormButton.removeEventListener("click", addPortfolio);
+  challengeFormButton.setAttribute("Style","background-color:green");
+  challengeFormButton.innerHTML = "Submitted!";
+  challengeFormButton.disabled = true;
+
 };
 
-
-
-document
-  .querySelector(".challenge-form button")
-  .addEventListener("click", addPortfolio);
+challengeFormButton.addEventListener("click", addPortfolio);
