@@ -1,16 +1,17 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-//Creates new user and adds to User table
+// Do we even need a get route?
+// If so needs to be updated with proper code
 router.get('/', async (req, res) => {
   try {
-    const userData = await User.create(req.body);
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
+    // const userData = await User.create(req.body);
+    // req.session.save(() => {
+    //   req.session.user_id = userData.id;
+    //   req.session.logged_in = true;
 
-      res.status(200).json(userData);
-    });
+    //   res.status(200).json(userData);
+    // });
   } catch (err) {
     res.status(400).json(err);
   }
