@@ -1,5 +1,9 @@
 const router = require('express').Router();
+<<<<<<< HEAD
 const { User } = require('../../models');
+=======
+const {User} = require('../../models')
+>>>>>>> 0b529cd7756681bdadad9c71fa67441b911da6f5
 
 //Creates new user and adds to User table
 router.get('/', async (req, res) => {
@@ -16,6 +20,24 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.post('/', (req, res) => {
+  User.create({
+    username: req.body.username,
+    password: req.body.password
+  })
+    .then(dbUserData => {
+      req.session.save(() => {
+        req.session.userId = dbUserData.id;
+        req.session.username = dbUserData.username;
+        req.session.loggedIn = true;
+        res.json(dbUserData);
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 router.post('/login', async (req, res) => {
   try {
