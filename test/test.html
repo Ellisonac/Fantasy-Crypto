@@ -5,82 +5,78 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Fantasy Crypto</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="./styles.css">
-  <style>@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Quantico&family=Saira+Condensed&display=swap');</style>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Quantico&family=Saira+Condensed&display=swap');
+  </style>
 </head>
 
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-       <ul class="navbar-nav mr-auto">
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-brand"><img class="nav-brand" src="../public/assets/fantasy-logo.png"></li>
         <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="/">Leaderboard</a></li>
-      
-          <li class="nav-item"><a class="nav-link" href="/">Portfolio</a></li>
-          <li class="nav-item"><a class="nav-link" href="/">Logout</a></li>
-       
-          <li class="nav-item"><a class="nav-link" href="/">Login</a></li>
-         <li class="nav-item"><a class="nav-link" href="/">Sign-up</a></li>
+
+        <li class="nav-item"><a class="nav-link" href="/">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link" href="/">Logout</a></li>
+
+        <li class="nav-item"><a class="nav-link" href="/">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="/">Sign-up</a></li>
 
       </ul>
-      </nav>
-    </header>
-  <section>
-    <div class="container py-4 h-50" style="width: 35rem">
-      <div class="row d-flex justify-content-center align-items-center h-50">
-        <div class="col-xl-10">
-          <div class="card rounded-3 text-black">
-            <div class="row g-0">
-              <div class="col-lg-6">
-                <div class="card-body p-md-5 mx-md-3" style="width: 25rem;">
-  
-                  <div class="thumbnail">
-                    <img src="../public/assets/fantasy-logo.png" alt="logo" class="img-thumbnail">
-                    
-                  </div>
-  
-                  <form>
-                    <p>Please login to your account</p>
-  
-                    <div class="form-outline mb-6">
-                      <input type="email" id="form2Example11" class="form-control" placeholder="Email"/>
-                      <label class="form-label" for="form2Example11">Email</label>
-                    </div>
+    </nav>
+  </header>
 
-                    <div class="form-outline mb-6">
-                      <input type="username" id="form2Example11" class="form-control" placeholder="Username"/>
-                      <label class="form-label" for="form2Example11">Username</label>
-                    </div>
-  
-                    <div class="form-outline mb-6">
-                      <input type="password" id="form2Example22" class="form-control" placeholder="Password"/>
-                      <label class="form-label" for="form2Example22">Password</label>
-                    </div>
-  
-                    <div class="text-center pt-1 mb-5 pb-1">
-                      <button class="btn btn-info btn-block fa-lg gradient-custom-2 mb-3" type="button">Log in</button>
-                      <a class="forgot" href="#!">Forgot password?</a>
-                    </div>
-  
-                    <div class="d-flex align-items-center justify-content-center pb-4">
-                      <p class="mb-0 me-2 px-2">Don't have an account?</p>
-                      <button type="button" class="btn btn-outline-success">Create new</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+<section>
+  <div class="row">
+    <div class="col-4">
+      <h3>Challenge List</h3>
+      <ul>
+        <li>
+          <a href="/challenge/{{challenge.id}}">
+            <h3 class="challenge-title">Challenge</h3>
+            <p class="challenge-status">Challenge 1</p>
+          </a>
+        </li>
+        <li>
+          <a href="/challenge/{{challenge.id}}">
+            <h3 class="challenge-title">Challenge</h3>
+            <p class="challenge-status">Challenge 2</p>
+          </a>
+        </li>
+        <li>
+          <a href="/challenge/{{challenge.id}}">
+            <h3 class="challenge-title">Challenge</h3>
+            <p class="challenge-status">Challenge 3</p>
+          </a>
+        </li>
+      </ul>
     </div>
-  </section>
+    <div class="col-8">
+      <h3>Portfolio</h3>
+      <ul>
+        <li>Holding 1</li>
+        <li>Holding 1</li>
+        <li>Holding 1</li>
+        <li>Holding 1</li>
+        <li>Holding 1</li>
+        <li>Holding 1</li>
+      </ul>
+    </div>
+  </div>
+
+</section>
+
+
+
+  
   <script src="../public/js/login.js"></script>
   <footer>
-     <p>@Copyright FantasyCrypto</p>
+    <p>@Copyright FantasyCrypto</p>
   </footer>
 </body>
 

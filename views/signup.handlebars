@@ -1,45 +1,53 @@
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-       <ul class="navbar-nav mr-auto">
-        <li class="nav-brand"><img class="nav-brand" src="../public/assets/fantasy-logo.png"></li>
-        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="/">Leaderboard</a></li>
-      {{#if loggedin}}
-        <li class="nav-item"><a class="nav-link" href="/">Portfolio</a></li>
-        <li class="nav-item"><a class="nav-link" href="/">Logout</a></li>
-      {{else}}
-        <li class="nav-item"><a class="nav-link" href="/">Login</a></li>
-       <li class="nav-item"><a class="nav-link" href="/">Sign-up</a></li>
-      {{/if}}
-    </ul>
-    </nav>
-  </header>
+<section>
+  <div class="container py-4 h-50" style="width: 35rem">
+    <div class="row d-flex justify-content-center align-items-center h-50">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-3" style="width: 25rem;">
 
-<div class="card">
-  <div class="card-header">
-    <h2>Sign Up</h2>
+                <div class="thumbnail">
+                  <img src="../public/assets/fantasy-logo.png" alt="logo" class="img-thumbnail">
+
+                </div>
+
+                <form>
+                  <p>Create an account</p>
+
+                  <div class="form-outline mb-6">
+                    <input type="email" id="form2Example11" class="form-control" placeholder="Email" />
+                    <label class="form-label" for="form2Example11">Email</label>
+                  </div>
+
+                  <div class="form-outline mb-6">
+                    <input type="username" id="username-input-signup" class="form-control" placeholder="Username" />
+                    <label class="form-label" for="form2Example11">Username</label>
+                  </div>
+
+                  <div class="form-outline mb-6">
+                    <input type="password" id="password-input-signup" class="form-control" placeholder="Password" />
+                    <label class="form-label" for="form2Example22">Password</label>
+                  </div>
+
+                  <div class="text-center pt-1 mb-5 pb-1">
+                    <button class="btn btn-info btn-block fa-lg gradient-custom-2 mb-3" type="button">Create
+                      Account</button>
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center pb-4">
+                    <p class="mb-0 me-2 px-2">Already have an account?</p>
+                    <button type="button" class="btn btn-outline-success">Sign In</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div id="signup" role="tabpanel">
-    <form id="signup-form" class="card-body">
-      <div>
-        <label for="email-input-signup">Email</label>
-        <input type="text" id="email-input-signup" />
-      </div>
-      <div>
-        <label for="username-input-signup">Username</label>
-        <input type="text" id="username-input-signup" />
-      </div>
-      <div>
-        <label for="password-input-signup">Password</label>
-        <input type="password" id="password-input-signup" />
-      </div>
-      <button type="submit" id="signup-btn" class="btn" >Signup!</button>
-      <a href="/login">Login instead</a>
-    </form>
   </div>
-</div>
+</section>
+
 <script src="/js/signup.js"></script>
-
-<footer>
-      <p>@Copyright FantasyCrypto</p>
-  </footer>

@@ -8,7 +8,7 @@ const {
 
 const router = require("express").Router();
 
-router.get("/challenge/", async (req, res) => {
+router.get("/challenge", async (req, res) => {
   try {
     const challengeData = await Challenge.findAll();
 

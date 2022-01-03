@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Quantico&family=Saira+Condensed&display=swap');
+
 header ul {
     display: flex;
     list-style: none;
@@ -34,6 +36,7 @@ body {
 footer {
     color:white;
     font-family: 'Quantico', sans-serif;
+    margin-left: 10px;
 }
 
 .card {
