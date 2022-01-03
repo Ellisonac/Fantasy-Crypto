@@ -75,9 +75,6 @@ const seedDatabase = async () => {
       console.log(`${coin.name} Request Done`);
       const coinData = response.data;
 
-      // console.log(Object.keys(response));
-      // console.log(coinData[0]);
-
       coins[ii] = {
         ...coin,
         start_value: coinData[0].quotes.USD.price.toFixed(4),

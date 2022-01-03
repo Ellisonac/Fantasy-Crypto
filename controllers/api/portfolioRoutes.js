@@ -9,7 +9,6 @@ const router = require("express").Router();
 
 router.post("/", async (req, res) => {
   try {
-    console.log(req.body);
     const newPortfolio = await Portfolio.create(
       {
         user_id: req.session.user_id,
@@ -32,7 +31,6 @@ router.post("/", async (req, res) => {
       );
       coinEntries.push(newCoinEntry);
     }
-    console.log(coinEntries);
     res.status(200).json(newPortfolio)
   } catch (err) {
     console.log(err);

@@ -27,7 +27,6 @@ const getCoinValues = async (challengeCoins) => {
       console.log(`${coin.coin.name} Request Done`);
       const coinData = response.data;
 
-      // console.log(Object.keys(response));
       console.log(coinData[0]);
 
       challengeCoins[ii] = {
