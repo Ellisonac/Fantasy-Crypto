@@ -1,32 +1,25 @@
 const router = require('express').Router();
-const {User} = require('../../models')
+const { User } = require('../../models');
 
+// Do we even need a get route?
+// If so needs to be updated with proper code
 router.get('/', async (req, res) => {
   try {
-    // Get all projects and JOIN with user data
-    const userData = await User.findAll({
-      include: [
-        // {
-        //   model: Challenge,
-        // },
-      ],
-    });
+    // const userData = await User.create(req.body);
+    // req.session.save(() => {
+    //   req.session.user_id = userData.id;
+    //   req.session.logged_in = true;
 
-    // Serialize data so the template can read it
-    const users = userData.map((user) => user.get({ plain: true }));
-
-    // Pass serialized data and session flag into template
-    res.render('allUsers', { 
-      users, 
-      // logged_in: req.session.logged_in 
-    });
+    //   res.status(200).json(userData);
+    // });
   } catch (err) {
-    res.status(500).json(err);
+    res.status(400).json(err);
   }
 });
 
 router.post('/', (req, res) => {
   User.create({
+    email: req.body.email,
     username: req.body.username,
     password: req.body.password
   })
