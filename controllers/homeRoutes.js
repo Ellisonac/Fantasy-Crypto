@@ -43,7 +43,7 @@ router.get("/challenge/:id", async (req, res) => {
 
     const challenge = challengeData.get({ plain: true });
 
-    const coinEntries = challenge.challenge_coin_data.map((coin) => {
+    let coinEntries = challenge.challenge_coin_data.map((coin) => {
       return {
         ...coin,
         name: coin.coin.name,
@@ -94,7 +94,10 @@ router.get("/portfolio/:id", async (req, res) => {
 
     const portfolioEntries = portfolio.portfolio_coin_entries;
 
-    const coinEntries = portfolio.challenge.challenge_coin_data;
+    let coinEntries = portfolio.challenge.challenge_coin_data;
+
+    // Update coin values with current api values
+    // coinEntries = getCoinValues(coinEntries);
 
     const coins = evaluatePortfolio(portfolioEntries, coinEntries);
 

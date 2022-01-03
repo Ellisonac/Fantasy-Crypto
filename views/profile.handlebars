@@ -1,10 +1,10 @@
-<div class="card profile-page">
+<div class="card profile-page p-2">
   <h2>User {{user.id}}</h2>
   <p>All Portfolios</p>
   <ul>
   {{#each portfolios as |portfolio|}}
     <a href="/portfolio/{{portfolio.id}}">
-      <li>
+      <li class="card p-2 m-1">
         <h3>Challenge {{portfolio.challenge_id}}</h3>
       </li>
     </a>
