@@ -24,7 +24,7 @@ body {
     max-width: 300px;
     max-height: 300px;
     background-color: rgba(0, 0, 0, 0.3);
-    border: black;
+    border: none;
 }
 
 
@@ -36,10 +36,8 @@ body {
 
 footer {
     color:white;
+    font-family: 'Quantico', sans-serif;
 }
-
-
-
 
 .card {
     background-color: rgba(0, 0, 0, 0.3);
@@ -47,15 +45,23 @@ footer {
 }
 
 .card-body {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.5);
     width: 200px;
     float: left 20px;
+    border: none;
 }
 
-form p {
+form {
+    font-family: 'Saira Condensed', sans-serif;
     color: white;
+    border: none;
 }
 
-.form-outline {
-    color: white;
+.forgot {
+    color: rgba(252, 64, 64, 0.603);
+}
+
+.btn {
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(255,255,255,0.2) 49%, rgba(0,0,0,0.15) 51%, rgba(0,0,0,0.05));
+    background-repeat: repeat-x;
 }
