@@ -18,6 +18,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', (req, res) => {
   User.create({
+    email: req.body.email,
     username: req.body.username,
     password: req.body.password
   })
