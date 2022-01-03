@@ -1,9 +1,5 @@
 const router = require('express').Router();
-<<<<<<< HEAD
 const { User } = require('../../models');
-=======
-const {User} = require('../../models')
->>>>>>> 0b529cd7756681bdadad9c71fa67441b911da6f5
 
 //Creates new user and adds to User table
 router.get('/', async (req, res) => {
