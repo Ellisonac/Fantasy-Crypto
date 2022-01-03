@@ -37,6 +37,8 @@ footer {
     color:white;
     font-family: 'Quantico', sans-serif;
     margin-left: 10px;
+    position: fixed;
+    bottom: 0;
 }
 
 .card {
