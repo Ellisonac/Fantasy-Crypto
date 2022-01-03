@@ -16,5 +16,5 @@ const signupFormHandler = async function(event) {
       .catch(err => console.log(err));
   };
   document
-    .querySelector("#signup-form")
+    .querySelector(".signup-form")
     .addEventListener("submit", signupFormHandler);
