@@ -6,8 +6,8 @@
       <li class="card p-2 m-1">
         <h3>Coin: {{coin.name}}</h3>
         <p class="coin-description">Amount: {{coin.amount}}</p>
-        {{! Calculate value before render }}
-        <p class="coin-description">Value: {{coin.startValue}}</p>
+        <p class="coin-description">Start Value: {{coin.startValue}}</p>
+        <p class="coin-description">Current Value: {{coin.currentValue}}</p>
       </li>
     {{/each}}
     <p>Start Value: {{startValue}}</p>

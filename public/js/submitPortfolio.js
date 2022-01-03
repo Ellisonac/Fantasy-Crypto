@@ -11,16 +11,15 @@ const addPortfolio = async (e) => {
     input.value,
   ]);
 
-  console.log(challengeID,coinInputs);
-
   const response = await fetch("/api/portfolio", {
     method: "POST",
     body: JSON.stringify({ challengeID, coinInputs }),
     headers: { "Content-Type": "application/json" },
   });
 
-  console.log(response);
 };
+
+
 
 document
   .querySelector(".challenge-form button")

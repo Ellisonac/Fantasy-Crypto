@@ -20,14 +20,20 @@ const seedDatabase = async () => {
   });
 
   const statuses = ["Open", "Closed", "Ended"];
+  const capital = [5000,10000,50000,100000];
   let challenges = [];
-  for (let ii = 0; ii < 5; ii++) {
+  for (let ii = 0; ii < 8; ii++) {
     const day = Math.floor(Math.random() * 30) + 1;
+    const time_start = new Date(`January ${day}, 2022 00:00:00`);
+    const time_end = new Date(`January ${day}, 2022 23:59:59`),
+    if (time_start > Date()) {
+      
+    }
     const chall = await Challenge.create(
       {
-        capital: Math.floor(Math.random() * 100000),
-        time_start: new Date(`December ${day}, 2021 00:00:00`),
-        time_end: new Date(`December ${day}, 2021 23:59:59`),
+        capital: capital[Math.floor(Math.random() * capital.length)],
+        time_start,
+        time_end,
         status: statuses[Math.floor(Math.random() * statuses.length)],
       },
       {
@@ -58,9 +64,9 @@ const seedDatabase = async () => {
 
   // Populate portfolios and assign to random users/challenges
   let portfolios = [];
-  for (let ii = 0; ii < users.length; ii++) {
+  for (let ii = 0; ii < users.length*3; ii++) {
     const port = await Portfolio.create({
-      user_id: ii + 1,
+      user_id: Math.floor(ii/3) + 1,
       challenge_id:
         challenges[Math.floor(Math.random() * challenges.length)].id,
     });

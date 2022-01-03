@@ -1,4 +1,39 @@
-const getCoinValues = (challengeCoins) => {};
+const coinToID = {
+  'Bitcoin': 'btc-bitcoin',
+  'Ethereum': 'eth-ethereum',
+  'Tether': 'usdt-tether',
+  'Cardano': 'ada-cardano',
+  'Binance Coin': 'bnb-binance-coin',
+  'XRP': 'xrp-xrp',
+  'Solana': 'sol-solana',
+  'USD Coin': 'usdc-usd-coin',
+  'Polkadot': 'dot-polkadot',
+  'Dogecoin':'doge-dogecoin',
+  }
+
+const getCoinValues = async (challengeCoins) => {
+
+  // Add api values for current coin evaluation
+  let currentUrl;
+  for (const coin of challengeCoins) {
+    coinUrl= `https://api.coinpaprika.com/v1/coins/${coinToID[coin.coin.name]}/markets`;
+    try {
+      const response = await fetch(coinUrl);
+      const coinData = response.json();
+  
+      coin = {
+        ...coin,
+        current_value: coinData[0].quotes.USD.price
+      }
+    } catch (err) {
+      console.log(err);
+      // Pause for a moment and try again 
+      setTimeout(singleCall(coinID),1000);
+    }
+  }
+
+  return challengeCoins;
+};
 
 const evaluatePortfolio = (portfolioEntries, coins) => {
   let values = [];
@@ -18,7 +53,7 @@ const evaluatePortfolio = (portfolioEntries, coins) => {
       name: coinValues.coin.name,
       amount,
       startValue,
-      endValue,
+      currentValue,
     });
   }
 
