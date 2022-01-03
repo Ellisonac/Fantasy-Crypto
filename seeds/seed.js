@@ -25,10 +25,9 @@ const seedDatabase = async () => {
   for (let ii = 0; ii < 8; ii++) {
     const day = Math.floor(Math.random() * 30) + 1;
     const time_start = new Date(`January ${day}, 2022 00:00:00`);
-    const time_end = new Date(`January ${day}, 2022 23:59:59`),
-    if (time_start > Date()) {
-      
-    }
+    const time_end = new Date(`January ${day}, 2022 23:59:59`);
+    // Add functionality for status check
+
     const chall = await Challenge.create(
       {
         capital: capital[Math.floor(Math.random() * capital.length)],

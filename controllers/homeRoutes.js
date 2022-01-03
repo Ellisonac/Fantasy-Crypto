@@ -96,7 +96,7 @@ router.get("/portfolio/:id", async (req, res) => {
     let coinEntries = portfolio.challenge.challenge_coin_data;
 
     // Update coin values with current api values
-    // coinEntries = getCoinValues(coinEntries);
+    coinEntries = await getCoinValues(coinEntries);
 
     const coins = evaluatePortfolio(portfolioEntries, coinEntries);
 

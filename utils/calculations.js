@@ -1,3 +1,6 @@
+const { default: axios } = require("axios");
+
+// Call https://api.coinpaprika.com/v1/coins get for more info
 const coinToID = {
   Bitcoin: "btc-bitcoin",
   Ethereum: "eth-ethereum",
@@ -13,18 +16,25 @@ const coinToID = {
 
 const getCoinValues = async (challengeCoins) => {
   // Add api values for current coin evaluation
-  for (const coin of challengeCoins) {
+  for (let ii = 0; ii < challengeCoins.length; ii++) {
+    const coin = challengeCoins[ii];
     let coinUrl = `https://api.coinpaprika.com/v1/coins/${
       coinToID[coin.coin.name]
-    }/markets`;
+    }/markets?quotes=USD&exchange_id=binance`;
+    
     try {
-      const response = await axios(coinUrl);
-      const coinData = response.json();
+      const response = await axios.get(coinUrl);
+      console.log(`${coin.coin.name} Request Done`);
+      const coinData = response.data;
 
-      coin = {
+      // console.log(Object.keys(response));
+      console.log(coinData[0]);
+
+      challengeCoins[ii] = {
         ...coin,
-        current_value: coinData[0].quotes.USD.price,
+        current_value: coinData[0].quotes.USD.price.toFixed(4),
       };
+      
     } catch (err) {
       console.log(err);
       // Pause for a moment and try again
