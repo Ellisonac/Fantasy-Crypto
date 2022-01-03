@@ -10,6 +10,20 @@ const {
 
 const userData = require("./userData.json");
 const coinData = require("./coinData.json");
+const { default: axios } = require("axios");
+
+const coinToID = {
+  Bitcoin: "btc-bitcoin",
+  Ethereum: "eth-ethereum",
+  Tether: "usdt-tether",
+  Cardano: "ada-cardano",
+  "Binance Coin": "bnb-binance-coin",
+  XRP: "xrp-xrp",
+  Solana: "sol-solana",
+  "USD Coin": "usdc-usd-coin",
+  Polkadot: "dot-polkadot",
+  Dogecoin: "doge-dogecoin",
+};
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -47,7 +61,34 @@ const seedDatabase = async () => {
     returning: true,
   });
 
-  const coins = allCoins.map((coin) => coin.get({ plain: true }));
+  let coins = allCoins.map((coin) => coin.get({ plain: true }));
+
+  // Collect current coin data  for start value seed
+  for (let ii = 0; ii < coins.length; ii++) {
+    const coin = coins[ii];
+    let coinUrl = `https://api.coinpaprika.com/v1/coins/${
+      coinToID[coin.name]
+    }/markets?quotes=USD&exchange_id=binance`;
+    
+    try {
+      const response = await axios.get(coinUrl);
+      console.log(`${coin.name} Request Done`);
+      const coinData = response.data;
+
+      // console.log(Object.keys(response));
+      // console.log(coinData[0]);
+
+      coins[ii] = {
+        ...coin,
+        start_value: coinData[0].quotes.USD.price.toFixed(4),
+      };
+      
+    } catch (err) {
+      console.log(err);
+      // Pause for a moment and try again
+      //setTimeout(singleCall(coinID),1000);
+    }
+  }
 
   // Populate each coins value for each challenge example
   for (const challenge of challenges) {
@@ -55,8 +96,8 @@ const seedDatabase = async () => {
       await Challenge_Coin_Data.create({
         challenge_id: challenge.id,
         coin_id: coin.id,
-        start_value: Math.random() * 100,
-        end_value: Math.random() * 100,
+        start_value: coin.start_value,
+        end_value: coin.start_value*(1+ (Math.random()-.5) * .5),
       });
     }
   }

@@ -123,13 +123,14 @@ router.get("/profile/", async (req, res) => {
       include: [
         {
           model: Portfolio,
+          include: [{
+            model: Challenge,
+          }]
         },
       ],
     });
 
     const user = userData.get({ plain: true });
-
-    console.log(user);
 
     res.render("profile", {
       user,
@@ -172,11 +173,11 @@ router.get("/leaderboard", async (req, res) => {
 
       challenge.maxGain = -10000;
       for (const portfolio of challenge.portfolios) {
-        const evaluation = evaluatePortfolio(
+        const evaluation = await evaluatePortfolio(
           portfolio.portfolio_coin_entries,
-          challenge.challenge_coin_data
+          await getCoinValues(challenge.challenge_coin_data)
         );
-
+          console.log(evaluation);
         if (evaluation.gain > challenge.maxGain) {
           challenge.maxGain = evaluation.gain;
           challenge.topPortfolio = portfolio;
