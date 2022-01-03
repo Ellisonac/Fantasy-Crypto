@@ -1,9 +1,30 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+       <ul class="navbar-nav mr-auto">
+        <li class="nav-brand"><img class="nav-brand" src="../public/assets/fantasy-logo.png"></li>
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/">Leaderboard</a></li>
+      {{#if loggedin}}
+        <li class="nav-item"><a class="nav-link" href="/">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link" href="/">Logout</a></li>
+      {{else}}
+        <li class="nav-item"><a class="nav-link" href="/">Login</a></li>
+       <li class="nav-item"><a class="nav-link" href="/">Sign-up</a></li>
+      {{/if}}
+    </ul>
+    </nav>
+  </header>
+
 <div class="card">
   <div class="card-header">
     <h2>Sign Up</h2>
   </div>
   <div id="signup" role="tabpanel">
     <form id="signup-form" class="card-body">
+      <div>
+        <label for="email-input-signup">Email</label>
+        <input type="text" id="email-input-signup" />
+      </div>
       <div>
         <label for="username-input-signup">Username</label>
         <input type="text" id="username-input-signup" />
@@ -19,3 +40,6 @@
 </div>
 <script src="/js/signup.js"></script>
 
+<footer>
+      <p>@Copyright FantasyCrypto</p>
+  </footer>

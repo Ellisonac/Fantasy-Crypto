@@ -5,4 +5,57 @@ header ul {
 
 header ul li {
     padding: 10px;
+    color: #95a5a6;
+    font-size: 20px;
+    font-family: 'Quantico', sans-serif;
+    font-weight: bold;
+}
+
+
+body {
+    background-image: url("../public/assets/blockchain background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+.img-thumbnail {
+    max-width: 300px;
+    max-height: 300px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: black;
+}
+
+
+.nav-brand {
+    height: 55px;
+    width: 55px;
+    padding: 3px;
+}
+
+footer {
+    color:white;
+}
+
+
+
+
+.card {
+    background-color: rgba(0, 0, 0, 0.3);
+    
+}
+
+.card-body {
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 200px;
+    float: left 20px;
+}
+
+form p {
+    color: white;
+}
+
+.form-outline {
+    color: white;
 }

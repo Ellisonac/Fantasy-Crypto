@@ -1,11 +1,20 @@
-{{#each users as |user| }}
-<div class="row align-center mb-5">
-  <div class="col-md-6">
-    <h2>{{{get_emoji}}} {{user.name}}</h2>
-  </div>
-  <div class="col-md-6">
-    <h3><a href="mailto:{{user.email}}">{{user.email}}</a></h3>
-  </div>
-</div>
-{{/each}}
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+       <ul class="navbar-nav mr-auto">
+        <li class="nav-brand"><img class="nav-brand" src="../public/assets/fantasy-logo.png"></li>
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/">Leaderboard</a></li>
+      {{#if loggedin}}
+        <li class="nav-item"><a class="nav-link" href="/">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link" href="/">Logout</a></li>
+      {{else}}
+        <li class="nav-item"><a class="nav-link" href="/">Login</a></li>
+       <li class="nav-item"><a class="nav-link" href="/">Sign-up</a></li>
+      {{/if}}
+    </ul>
+    </nav>
+  </header>
 
+<footer>
+      <p>@Copyright FantasyCrypto</p>
+  </footer>
