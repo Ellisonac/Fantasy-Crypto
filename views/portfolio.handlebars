@@ -2,6 +2,10 @@
   <h3>Portfolio {{portfolio.id}} - <a href="/challenge/{{portfolio.challenge_id}}">Challenge {{portfolio.challenge_id}}</a></h3>
   {{! Display Challenge link  }}
   
+  <div>
+    <canvas id="pie_chart"></canvas>
+  </div>
+
   <ul>
     {{#each coinEntries as |coin|}}
       <li class="card p-2 m-1">
@@ -16,4 +20,7 @@
   </ul>
   
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/js/piechart.js"></script>
 
