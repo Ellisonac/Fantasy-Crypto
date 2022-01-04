@@ -1,19 +1,18 @@
 <ul class="challenge-list">
-  <div class="container mt-3 d-flex justify-content-center row g-0">
-        {{#each data as |challenge|}}
-          <div class="col-md-3 border-right">
-            <div class="cards">
-              <li>
-                <div class="p-4 text-center"> <img src="/assets/bitcoin.jpeg" class="card-img-top"/>
-                    <h5 class="challenge-title">Challenge {{challenge.id}}</h5>
-                    <p class="challenge-status">{{challenge.status}}</p>
-                </div>
-              </li>
-            </div>
+  <div class="container mt-2 d-flex row g-0">
+  {{#each data as |challenge|}}
+    <div class="col-md-3 border-right">
+      <div class="cards">
+        <li><img src="/assets/bitcoin.jpeg" class="card-img-top">
+          <div class="p-4 text-center">
+            <h5 class="challenge-title">Challenge {{challenge.id}}</h5>
+            <p class="challenge-status">{{challenge.status}}</p>
           </div>
-          {{/each}}
-        </div> 
-  </div>
+        </li>
+      </div>
+    </div>
+  {{/each}}
+  </div> 
 </ul>
 
 <script src="/models/Challenge_Coin_Data.js"></script>
