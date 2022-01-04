@@ -96,4 +96,5 @@ form {
 
 .challenge-list {
     padding-top: 40px;
+    list-style: none;
 }
