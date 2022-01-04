@@ -1,0 +1,15 @@
+<div class="d-flex">
+  {{#if isForm}}
+    {{> challenge_form}}
+  {{else}}
+    {{> challenge_data}}
+  {{/if}}
+
+  {{#if isEnded}}
+    {{> challenge_results}}
+  {{/if}}
+</div>
+
+
+
+{{!-- <script src="/js/submitPortfolio.js"></script> --}}

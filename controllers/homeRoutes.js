@@ -50,9 +50,11 @@ router.get("/challenge/:id", async (req, res) => {
       };
     });
 
-    res.render("challenge_form", {
+    res.render("challenge", {
       challenge,
       coins:coinEntries,
+      isForm: challenge.status === 'Open' && req.session.logged_in, // Check has submission also
+      isEnded: challenge.status === 'Ended',
       logged_in: req.session.logged_in
     });
   } catch (err) {
