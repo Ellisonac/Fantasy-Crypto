@@ -16,13 +16,15 @@
        <ul class="navbar-nav mr-auto">
         <li class="nav-brand"><img class="nav-brand" src="../public/assets/fantasy-logo.png"></li>
         <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="/">Leaderboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="/leaderboard">Leaderboard</a></li>
       {{#if loggedin}}
-        <li class="nav-item"><a class="nav-link" href="../portfolio.handlebars">Portfolio</a></li>
-        <li class="nav-item"><a class="nav-link" href="/">Logout</a></li>
+        <li class="nav-item"><a class="nav-link" href="/profile">Portfolio>Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
       {{else}}
-        <li class="nav-item"><a class="nav-link" href="../login.handlebars">Login</a></li>
-        <li class="nav-item"><a class="nav-link" href="../signup.handlebars">Sign-up</a></li>
+        <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="/signup">Sign-up</a></li>
+
+
       {{/if}}
     </ul>
     </nav>
