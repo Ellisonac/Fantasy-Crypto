@@ -51,13 +51,6 @@ footer {
   border-top: none;
 }
 
-.card-body {
-  background-color: none;
-  width: 200px;
-  float: left 20px;
-  border: none;
-}
-
 form {
   font-family: "Saira Condensed", sans-serif;
   font-size: 18px;
