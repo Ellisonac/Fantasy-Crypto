@@ -52,7 +52,7 @@ router.get("/challenge/:id", async (req, res) => {
 
     res.render("challenge_form", {
       challenge,
-      coinEntries,
+      coins: coinEntries,
     });
   } catch (err) {
     console.log(err);
