@@ -1,6 +1,7 @@
 <div class="portfolio p-2">
   <h3>Portfolio {{portfolio.id}} - <a href="/challenge/{{portfolio.challenge_id}}">Challenge {{portfolio.challenge_id}}</a></h3>
   {{! Display Challenge link  }}
+  
   <ul>
     {{#each coinEntries as |coin|}}
       <li class="card p-2 m-1">
@@ -15,3 +16,4 @@
   </ul>
   
 </div>
+
