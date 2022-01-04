@@ -1,4 +1,4 @@
-<ul class="challenge-list">
+{{!-- <ul class="challenge-list">
   {{#each challenges as |challenge|}}
   <li>
     <a href="/challenge/{{challenge.id}}">
@@ -7,4 +7,75 @@
     </a>
   </li>
   {{/each}}
+</ul>
+
+
+<ul class="challenge-list">
+      <div class="cards">
+        <div class="bg-white p-3 text-center">
+          {{#each challenges as |challenge|}}
+          <li>
+            <a href="/challenge/{{challenge.id}}">
+              <h3 class="challenge-title">Challenge {{challenge.id}}</h3>
+              <p class="challenge-status">{{challenge.status}}</p>
+              </a>
+          </li>
+        </div>
+  {{/each}}
+      </div>
+</ul> --}}
+
+<ul class="challenge-list">
+  <div class="container mt-3 d-flex justify-content-center">
+    <div class="row g-0">
+        <div class="col-md-3 border-right">
+            <div class="cards">
+              {{#each challenges as |challenge|}}
+              <li>
+                <div class="first p-4 text-center"> <img src="/assets/bitcoin.jpeg" class="card-img-top"/>
+                    <h5 class="challenge-title">Challenge {{challenge.id}}</h5>
+                    <p class="challenge-status">{{challenge.status}}</p>
+                </div>
+              </li>
+              {{/each}}
+            </div>
+        </div>
+        <div class="col-md-3 border-right">
+            <div class="cards">
+              {{#each challenges as |challenge|}}
+              <li>
+                <div class="second p-4 text-center"> <img src="/assets/eth.jpg" class="card-img-top"/>
+                  <h5 class="challenge-title">Challenge {{challenge.id}}</h5>
+                  <p class="challenge-status">{{challenge.status}}</p>
+                </div>
+              <li>
+              {{/each}}
+            </div>
+        </div>
+        <div class="col-md-3 border-right">
+            <div class="cards">
+              {{#each challenges as |challenge|}}
+              <li>
+                <div class="third p-4 text-center"> <img src="/assets/doge.jpg" class="card-img-top"/>
+                  <h5 class="challenge-title">Challenge {{challenge.id}}</h5>
+                  <p class="challenge-status">{{challenge.status}}</p>
+                </div>
+              </li>
+              {{/each}}
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="cards">
+              {{#each challenges as |challenge|}}
+              <li>
+                <div class="fourth p-4 text-center"> <img src="/assets/bitcoin2.png" class="card-img-top"/>
+                  <h5 class="challenge-title">Challenge {{challenge.id}}</h5>
+                  <p class="challenge-status">{{challenge.status}}</p>
+                </div>
+              </li>
+              {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
 </ul>
