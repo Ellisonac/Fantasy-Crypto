@@ -2,16 +2,16 @@
   <div class="container mt-3 d-flex justify-content-center">
     <div class="row g-0">
         <div class="col-md-3 border-right">
+          {{#each challenges as |challenge|}}
             <div class="cards">
-              {{#each data as |challenge|}}
               <li>
                 <div class="first p-4 text-center"> <img src="/assets/bitcoin.jpeg" class="card-img-top"/>
                     <h5 class="challenge-title">Challenge {{challenge.id}}</h5>
                     <p class="challenge-status">{{challenge.status}}</p>
                 </div>
               </li>
-              {{/each}}
             </div>
+          {{/each}}
         </div> 
     </div>
 </div>
