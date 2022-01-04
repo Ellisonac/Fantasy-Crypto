@@ -1,13 +1,17 @@
-<ul class="portfolio">
-  <h3>Portfolio {{portfolio.id}} - Challenge {{portfolio.challenge_id}}</h3>
+<div class="portfolio p-2">
+  <h3>Portfolio {{portfolio.id}} - <a href="/challenge/{{portfolio.challenge_id}}">Challenge {{portfolio.challenge_id}}</a></h3>
   {{! Display Challenge link  }}
-
-  {{#each coinEntries as |coin|}}
-    <div class="card">
-      <h3>Coin: {{coin.name}}</h3>
-      <p class="coin-description">Amount: {{coin.amount}}</p>
-      {{! Calculate value before render }}
-      <p class="coin-description">Value: {{coin.value}}</p>
-    </div>
-  {{/each}}
-</ul>
+  <ul>
+    {{#each coinEntries as |coin|}}
+      <li class="card p-2 m-1">
+        <h3>Coin: {{coin.name}}</h3>
+        <p class="coin-description">Amount: {{coin.amount}}</p>
+        <p class="coin-description">Start Value: {{coin.startValue}}</p>
+        <p class="coin-description">Current Value: {{coin.currentValue}}</p>
+      </li>
+    {{/each}}
+    <p>Start Value: {{startValue}}</p>
+    <p>Current Value: {{currentValue}}</p>
+  </ul>
+  
+</div>

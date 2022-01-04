@@ -28,10 +28,10 @@ Challenge_Coin_Data.init(
         },
     },
     start_value:{
-        type: DataTypes.DECIMAL
+        type: DataTypes.DECIMAL(10,2)
     },
     end_value:{
-        type: DataTypes.DECIMAL
+        type: DataTypes.DECIMAL(10,2)
     },
   },
   {
