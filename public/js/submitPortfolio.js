@@ -1,5 +1,7 @@
 let challengeForm = document.querySelector(".challenge-form");
 let inputs = document.querySelectorAll(".coin-input-amount");
+let inputForms = document.querySelectorAll(".coin-inputs");
+let challengeFormButton = document.querySelector(".challenge-form button");
 
 const addPortfolio = async (e) => {
   e.preventDefault();
@@ -11,8 +13,6 @@ const addPortfolio = async (e) => {
     input.value,
   ]);
 
-  console.log(challengeID,coinInputs);
-
   const response = await fetch("/api/portfolio", {
     method: "POST",
     body: JSON.stringify({ challengeID, coinInputs }),
@@ -20,8 +20,12 @@ const addPortfolio = async (e) => {
   });
 
   console.log(response);
+
+  challengeFormButton.removeEventListener("click", addPortfolio);
+  challengeFormButton.setAttribute("Style","background-color:green");
+  challengeFormButton.innerHTML = "Submitted!";
+  challengeFormButton.disabled = true;
+
 };
 
-document
-  .querySelector(".challenge-form button")
-  .addEventListener("click", addPortfolio);
+challengeFormButton.addEventListener("click", addPortfolio);
