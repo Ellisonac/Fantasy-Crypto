@@ -12,15 +12,15 @@ const router = require("express").Router();
 
 router.get("/", async (req, res) => {
   try {
-    const challengeData = await Challenge.findAll();
+    let logged_in = req.session.logged_in;
 
-    const challenges = challengeData.map((challenge) =>
+    let challengeData = await Challenge.findAll();
+
+    let challenges = challengeData.map((challenge) =>
       challenge.get({ plain: true })
     );
 
-    res.render("all_challenges", {
-      challenges,
-    });
+    res.render("all_challenges", {data:challenges, logged_in})
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -171,6 +171,9 @@ router.get("/leaderboard", async (req, res) => {
         continue;
       }
 
+
+
+
       challenge.maxGain = -10000;
       for (const portfolio of challenge.portfolios) {
         const evaluation = await evaluatePortfolio(
@@ -195,5 +198,22 @@ router.get("/leaderboard", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+router.get('/login', (req, res) => {
+  if(req.session.logged_in){
+    res.redirect('/');
+    return;
+  }
+
+  res.render('login');
+  return;
+});
+
+router.get('/signup', (req, res) => {
+  res.render('signup');
+  return;
+});
+
+
 
 module.exports = router;
