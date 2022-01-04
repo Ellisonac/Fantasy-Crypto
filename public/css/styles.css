@@ -14,11 +14,7 @@ header ul li {
 }
 
 body {
-<<<<<<< HEAD
-    background-image: url("./assets/blockchain background.jpg");
-=======
     background-image: url("../assets/blockchain_background.jpg");
->>>>>>> 4601c93f522520e20d925a749bb4db97bf5553ae
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
