@@ -1,7 +1,6 @@
 <ul class="challenge-list">
-  {{#each challenges as |challenge|}}
-  <li>
-    <a href="/challenge/{{challenge.id}}">
+  {{#each data as |challenge|}}
+    <a href="/challenge/{{challenge.id}}"><li>
       <h3 class="challenge-title">Challenge {{challenge.id}}</h3>
       <p class="challenge-status">{{challenge.status}}</p>
     </a>
