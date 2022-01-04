@@ -115,9 +115,9 @@ router.get("/portfolio/:id", async (req, res) => {
 router.get("/profile/", async (req, res) => {
   try {
     // TEST ONLY
-    if (!req.session.user_id) {
-      req.session.user_id = 3;
-    }
+    // if (!req.session.user_id) {
+    //   req.session.user_id = 3;
+    // }
 
     const userData = await User.findByPk(req.session.user_id, {
       include: [
