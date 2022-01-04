@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Quantico&family=Saira+Condensed&display=swap');
+
+header ul {
+    display: flex;
+    list-style: none;
+}
+
+header ul li {
+    padding: 10px;
+    color: #95a5a6;
+    font-size: 20px;
+    font-family: 'Quantico', sans-serif;
+    font-weight: bold;
+}
+
+body {
+    background-image: url("../public/assets/blockchain background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.img-thumbnail {
+    max-width: 300px;
+    max-height: 300px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: none;
+}
+
+.nav-brand {
+    height: 55px;
+    width: 55px;
+    padding: 3px;
+}
+
+footer {
+    color:white;
+    font-family: 'Quantico', sans-serif;
+    margin-left: 10px;
+    position: fixed;
+    bottom: 0;
+}
+
+.card {
+    background-color: rgba(0, 0, 0, 0.3);
+    
+}
+
+.card-body {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 200px;
+    float: left 20px;
+    border: none;
+}
+
+form {
+    font-family: 'Saira Condensed', sans-serif;
+    color: white;
+    border: none;
+}
+
+.forgot {
+    color: rgba(252, 64, 64, 0.603);
+}
+
+.btn {
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(255,255,255,0.2) 49%, rgba(0,0,0,0.15) 51%, rgba(0,0,0,0.05));
+    background-repeat: repeat-x;
+}
