@@ -8,16 +8,17 @@
               <div class="card-body p-md-5 mx-md-3" style="width: 25rem;">
 
                 <div class="thumbnail">
-                  <img src="../public/assets/fantasy-logo.png" alt="logo" class="img-thumbnail">
+                  <img src="../assets/fantasy-logo.png" alt="logo" class="img-thumbnail">
                 </div>
 
                 <form class="challenge-form" data-id="{{challenge.id}}">
-                  <h2>Enter Challenge</h2>
+                  <h2>Enter Challenge - Capital - {{challenge.capital}}</h2>
                   {{#each coins as |coin|}}
                   <div class="form-outline mb-6">
                     <label for="coin{{coin.id}}">{{coin.name}} ({{coin.ticker_symbol}})</label>
                     <input type="number" class="form-control coin-input-amount" id="coin{{coin.id}}"
                       aria-describedby="coin{{coin.id}}Input" placeholder="0.0" data-id="{{coin.id}}">
+                    <p>Starting Value: {{coin.start_value}}</p>
                     <br />
                     {{/each}}
                     <button type="submit" class="btn btn-primary">Submit</button>

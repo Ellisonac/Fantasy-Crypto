@@ -52,7 +52,8 @@ router.get("/challenge/:id", async (req, res) => {
 
     res.render("challenge_form", {
       challenge,
-      coinEntries,
+      coins:coinEntries,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     console.log(err);
@@ -105,6 +106,7 @@ router.get("/portfolio/:id", async (req, res) => {
       coinEntries: coins.values,
       startValue: coins.startValue,
       currentValue: coins.currentValue,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     console.log(err);
@@ -135,6 +137,7 @@ router.get("/profile/", async (req, res) => {
     res.render("profile", {
       user,
       portfolios: user.portfolios,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     console.log(err);
@@ -192,6 +195,7 @@ router.get("/leaderboard", async (req, res) => {
 
     res.render("leaderboard", {
       challenges: closedChallenges,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     console.log(err);
