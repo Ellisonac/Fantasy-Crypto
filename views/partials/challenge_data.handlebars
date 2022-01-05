@@ -9,6 +9,7 @@
         <h2>Challenge {{challenge.id}} - Capital
           {{challenge.capital}}
         </h2>
+        <p>From: {{format_date challenge.time_start}} - {{format_date challenge.time_end}}</p>
         <p>Status: {{challenge.status}}</p>
         {{!-- <p>Challenge is closed to new submissions</p> --}}
         {{!-- <p>Total submissions: {{totalSubmissions}}</p> --}}

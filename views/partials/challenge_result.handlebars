@@ -10,7 +10,8 @@
           {{challenge.id}}- Capital
           {{challenge.capital}}
         </h2>
-        <p>Challenge is finished</p>
+        <p>From: {{format_date challenge.time_start}} - {{format_date challenge.time_end}}</p>
+        <p>Status: {{challenge.status}}</p>
         
         <div class="form-outline">
           {{#each coins as |coin|}}

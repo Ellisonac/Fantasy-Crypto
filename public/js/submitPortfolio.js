@@ -4,7 +4,7 @@ let inputs = document.querySelectorAll(".coin-input-amount");
 let challengeFormButton = document.querySelector(".challenge-form button");
 
 const addPortfolio = async (e) => {
-  e.preventDefault();
+  // e.preventDefault();
 
   const challengeID = challengeForm.getAttribute("data-id");
 

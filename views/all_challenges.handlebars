@@ -8,6 +8,8 @@
             <div class="p-4 text-center">
               <h5 class="challenge-title">Challenge {{challenge.id}}</h5>
               <p class="challenge-status">{{challenge.status}}</p>
+              <p>Start: {{format_date challenge.time_start}}</p>
+              <p>End: {{format_date challenge.time_end}}</p>
             </div>
           </li>
         </a>
