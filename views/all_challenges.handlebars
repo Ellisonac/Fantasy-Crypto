@@ -3,12 +3,14 @@
   {{#each data as |challenge|}}
     <div class="col-md-3 border-right">
       <div class="cards">
-        <li><img src="/assets/bitcoin.jpeg" class="card-img-top">
-          <div class="p-4 text-center">
-            <h5 class="challenge-title">Challenge {{challenge.id}}</h5>
-            <p class="challenge-status">{{challenge.status}}</p>
-          </div>
-        </li>
+        <a href="challenge/{{challenge.id}}">
+          <li><img src="{{challenge.image_url}}" class="card-img-top">
+            <div class="p-4 text-center">
+              <h5 class="challenge-title">Challenge {{challenge.id}}</h5>
+              <p class="challenge-status">{{challenge.status}}</p>
+            </div>
+          </li>
+        </a>
       </div>
     </div>
   {{/each}}
