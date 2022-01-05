@@ -31,48 +31,62 @@
     </nav>
   </header>
 
-
-
-  <section>
-    <div class="container py-4 h-50" style="width: 35rem">
-      <div class="row d-flex justify-content-center align-items-center h-50">
-        <div class="col-xl-10">
-          <div class="card rounded-3 text-black">
-            <div class="row g-0">
-              <div class="col-lg-6">
-                <div class="card-body p-md-5 mx-md-3" style="width: 25rem;">
-  
-                  <div class="thumbnail">
-                    <img src="../public/assets/fantasy-logo.png" alt="logo" class="img-thumbnail">
-                  </div>
-  
-                  <form class="challenge-form" data-id="{{challenge.id}}">
-                    <h2>Enter Challenge</h2>
-                    {{#each coins as |coin|}}
-                    <div class="form-outline mb-6">
-                      <label for="coin{{coin.id}}">{{coin.name}} ({{coin.ticker_symbol}})</label>
-                      <input type="number" class="form-control coin-input-amount" id="coin{{coin.id}}"
-                        aria-describedby="coin{{coin.id}}Input" placeholder="0.0" data-id="{{coin.id}}">
-                      <br />
-                      {{/each}}
-                      <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
+  <ul class="challenge-list">
+  <div class="container mt-3 d-flex justify-content-center">
+    <div class="row g-0">
+        <div class="col-md-3 border-right">
+            <div class="cards">
+              {{#each challenges as |challenge|}}
+              <li>
+                <div class="first p-4 text-center"> <img src="../public/assets/bitcoin.jpeg" class="card-img-top"/>
+                    <h5 class="challenge-title">Challenge {{challenge.id}}</h5>
+                    <p class="challenge-status">{{challenge.status}}</p>
                 </div>
-                </form>
-              </div>
+              </li>
+              {{/each}}
             </div>
-          </div>
         </div>
-      </div>
+        <div class="col-md-3 border-right">
+            <div class="cards">
+              {{#each challenges as |challenge|}}
+              <li>
+                <div class="second p-4 text-center"> <img src="../public/assets/eth.jpg" class="card-img-top"/>
+                  <h5 class="challenge-title">Challenge {{challenge.id}}</h5>
+                  <p class="challenge-status">{{challenge.status}}</p>
+                </div>
+              <li>
+              {{/each}}
+            </div>
+        </div>
+        <div class="col-md-3 border-right">
+            <div class="cards">
+              {{#each challenges as |challenge|}}
+              <li>
+                <div class="third p-4 text-center"> <img src="../public/assets/doge.jpg" class="card-img-top"/>
+                  <h5 class="challenge-title">Challenge {{challenge.id}}</h5>
+                  <p class="challenge-status">{{challenge.status}}</p>
+                </div>
+              </li>
+              {{/each}}
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="cards">
+              {{#each challenges as |challenge|}}
+              <li>
+                <div class="fourth p-4 text-center"> <img src="../public/assets/bitcoin2.png" class="card-img-top"/>
+                  <h5 class="challenge-title">Challenge {{challenge.id}}</h5>
+                  <p class="challenge-status">{{challenge.status}}</p>
+                </div>
+              </li>
+              {{/each}}
+            </div>
+        </div>
     </div>
-    </div>
-    </div>
-  </section>
+</div>
+</ul>
   
-
-
-  
-  <script src="../public/js/login.js"></script>
+  <script src="/js/login.js"></script>
   <footer>
     <p>FantasyCrypto</p>
   </footer>
