@@ -10,20 +10,23 @@
           {{challenge.id}}- Capital
           {{challenge.capital}}
         </h2>
+        <p>From: {{format_date challenge.time_start}} - {{format_date challenge.time_end}}</p>
+        <p>Status: {{challenge.status}}</p>
         
         <div class="form-outline">
           {{#each coins as |coin|}}
-            <label for="coin{{coin.coin_id}}">{{coin.name}}
-              ({{coin.ticker_symbol}})
+            <label for="coin{{coin.coin_id}}-input">{{coin.name}}
+              (<span id="coin{{coin.coin_id}}-ticker">{{coin.ticker_symbol}}</span>)
             </label>
             <input
               type="number"
               class="form-control coin-input-amount"
-              id="coin{{coin.coin_id}}"
+              id="coin{{coin.coin_id}}-input"
               aria-describedby="coin{{coin.coin_id}}Input"
-              placeholder="0.0"
+              placeholder="0"
               data-id="{{coin.coin_id}}"/>
-            <p>Starting Value: {{coin.start_value}}</p>
+            <p>Starting Value: <span id="coin{{coin.coin_id}}-start">{{coin.start_value}}</span></p>
+            <p class="purchase" id="coin{{coin.coin_id}}-purchase">0 {{coin.ticker_symbol}}</p>
             <br/>
           {{/each}}
           <button type="submit" class="btn btn-primary">Submit</button>

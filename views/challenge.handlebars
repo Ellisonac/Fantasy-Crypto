@@ -1,12 +1,17 @@
-<div class="d-flex">
+<div class="d-flex justify-content-center">
   {{#if isForm}}
     {{> challenge_form}}
   {{else}}
-    {{> challenge_data}}
+    {{#if isEnded}}
+      {{> challenge_result}}  
+    {{else}}
+      {{> challenge_data}}
+    {{/if}}
+    
   {{/if}}
 
-  {{#if isEnded}}
-    {{> challenge_results}}
+  {{#if hasSubmission}}
+    {{> challenge_submission}}
   {{/if}}
 </div>
 

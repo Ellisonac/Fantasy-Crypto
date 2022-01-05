@@ -1,35 +1,36 @@
-<div class="value-container">
-  <div class="row">
-    <div class="col-sm-8">
-      <div class="portfolio jumbotron">
-        <h3 class="display-6">Portfolio {{portfolio.id}} -
-          <a href="/challenge/{{portfolio.challenge_id}}">Challenge
-            {{portfolio.challenge_id}}</a></h3>
-        <hr class="my-4" />
-        {{! Display Challenge link  }}
+ <div class="value-container">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="portfolio jumbotron">
+          <h3 class="display-6">Portfolio {{portfolio.id}} - <a href="/challenge/{{portfolio.challenge_id}}">Challenge {{portfolio.challenge_id}}</a></h3>
+            <hr class="my-4">
+            {{! Display Challenge link  }}
+          </div>
+  
+          <ul class="coin-card">
+            {{#each coinEntries as |coin|}}
+            <li>
+              <h3 class="coin-name">Coin: {{coin.name}}</h3>
+              <p class="coin-description coin-amount">Amount: {{coin.amount}}</p>
+              <p class="coin-description">Start Value: {{coin.startValue}}</p>
+              <p class="coin-description">Current Value: {{coin.currentValue}}</p>
+            </li>
+            {{/each}}
+          </ul>
+          <div class="values-card">
+            <p>Start Value: {{startValue}}</p>
+            <p>Current Value: {{currentValue}}</p>
+          </div>
       </div>
-
-      <ul class="coin-card">
-        {{#each coinEntries as |coin|}}
-          <li>
-            <h3 class="coin-name">Coin: {{coin.name}}</h3>
-            <p class="coin-description coin-amount">Amount: {{coin.amount}}</p>
-            <p class="coin-description">Start Value: {{coin.startValue}}</p>
-            <p class="coin-description">Current Value: {{coin.currentValue}}</p>
-          </li>
-        {{/each}}
-      </ul>
-      <div class="values-card">
-        <p>Start Value: {{startValue}}</p>
-        <p>Current Value: {{currentValue}}</p>
-      </div>
-    </div>
-
-    <div class="col-sm-4">
+    
+  <div class="col-sm-6 ml-auto">
       <canvas id="pie_chart"></canvas><p class="chart">Chart Here</p>
-    </div>
+  </div>
   </div>
 </div>
+  
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0-rc.1/chartjs-plugin-datalabels.min.js" integrity="sha512-+UYTD5L/bU1sgAfWA0ELK5RlQ811q8wZIocqI7+K0Lhh8yVdIoAMEs96wJAIbgFvzynPm36ZCXtkydxu1cs27w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/js/piechart.js"></script>
+
