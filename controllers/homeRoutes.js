@@ -124,8 +124,12 @@ router.get("/challenge/:id", async (req, res) => {
 });
 
 // Get an individual portfolio,
-// TODO check if user is correct user
 router.get("/portfolio/:id", async (req, res) => {
+  if (!req.session.logged_in) {
+    res.redirect('/login');
+    return
+  }
+
   try {
     const portfolioData = await Portfolio.findByPk(req.params.id, {
       include: [
@@ -177,6 +181,11 @@ router.get("/portfolio/:id", async (req, res) => {
 });
 
 router.get("/profile/", async (req, res) => {
+  if (!req.session.logged_in) {
+    res.redirect('/login');
+    return
+  }
+
   try {
     const userData = await User.findByPk(req.session.user_id, {
       include: [
