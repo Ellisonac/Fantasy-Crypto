@@ -1,4 +1,4 @@
-<section>
+<section class="col-sm-5">
   <div class="row d-flex justify-content-center align-items-center h-50">
     <div class="card p-md-5 mx-md-4" style="width: 34rem;">
       <div class="thumbnail p-md-5 mx-md-4">
@@ -24,7 +24,7 @@
               id="coin{{coin.coin_id}}-input"
               aria-describedby="coin{{coin.coin_id}}Input"
               placeholder="0"
-              data-id="{{coin.coin_id}}"/>
+              data-id="{{coin.coin_id}}" data-name="{{coin.coin.name}}"/>
             <p>Starting Value: <span id="coin{{coin.coin_id}}-start">{{coin.start_value}}</span></p>
             <p class="purchase" id="coin{{coin.coin_id}}-purchase">0 {{coin.ticker_symbol}}</p>
             <br/>
@@ -40,4 +40,10 @@
   </div>
 </section>
 
+<div class="d-flex col-sm-5 flex-column align-items-center m-2">
+  <h2 style="color:white">Portfolio Allocation</h2>
+  <canvas id="allocation-chart"></canvas>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script src="/js/submitPortfolio.js"></script>
