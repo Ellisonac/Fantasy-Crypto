@@ -8,16 +8,20 @@ const createPieChart = async () => {
         coinName = coinName.split(" ");
         let coinAmount = coinsData[i].childNodes[3].textContent;
         coinAmount = coinAmount.split(" ");
-        
+        let coinCurrVal = coinsData[i].childNodes[7].textContent;
+        coinCurrVal = coinCurrVal.split(" ");
+
+        let ratio = coinAmount[1] * coinCurrVal[2];
+
         let coin = {
             "name": coinName[1],
-            "amount": coinAmount[1]
+            "amount": coinAmount[1],
+            "currVal": coinCurrVal[1],
+            "ratio": ratio
         }
 
         coins.push(coin);
     };
-
-    //Need ratio of current value * amount
 
     const data = {
         labels: [
@@ -27,7 +31,7 @@ const createPieChart = async () => {
         ],
         datasets: [{
           label: 'Portfolio Breakdown',
-          data: [300, coins[1].amount, coins[2].amount],
+          data: [coins[0].ratio, coins[1].ratio, coins[2].ratio],
           backgroundColor: [
             'rgb(255, 99, 132)',
             'rgb(54, 162, 235)',
