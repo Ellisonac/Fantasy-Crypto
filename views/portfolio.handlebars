@@ -4,7 +4,7 @@
   
   <ul>
     {{#each coinEntries as |coin|}}
-      <li class="card p-2 m-1">
+      <li class="coin-card p-2 m-1">
         <h3>Coin: {{coin.name}}</h3>
         <p class="coin-description">Amount: {{coin.amount}}</p>
         <p class="coin-description">Start Value: {{coin.startValue}}</p>
@@ -14,5 +14,4 @@
     <p>Start Value: {{startValue}}</p>
     <p>Current Value: {{currentValue}}</p>
   </ul>
-  
 </div>
