@@ -57,18 +57,42 @@ router.get("/challenge/:id", async (req, res) => {
           },
         },
         {
-          model: Portfolio
+          model: Portfolio,
         }
       ],
     });
 
-    // If logged in find if the user has a submission
-
     const challenge = challengeData.get({ plain: true });
 
-    console.log(challenge);
+    // If logged in find if the user has a submission
+    const portfolioData = await Portfolio.findAll({
+      where: {
+        challenge_id: req.params.id,
+        user_id: req.session.user_id,
+      },
+      include: {
+        model: Portfolio_Coin_Entry,
+        include: {
+          model: Coin,
+        }
+      }
+    });
 
-    const submissions = challenge.portfolios.length;
+    let submission;
+    let hasSubmission = false;
+    if (portfolioData.length > 0) {
+      console.log(portfolioData);
+      submission = portfolioData[0].get({ plain: true });
+      submission.coinEntries = submission.portfolio_coin_entries.map(entry => {
+        return {
+          ...entry,
+          name: entry.coin.name,
+          ticker_symbol: entry.coin.ticker_symbol
+        }
+      });
+      hasSubmission = true;
+      console.log(submission);
+    }
 
     let coinEntries = challenge.challenge_coin_data.map((coin) => {
       return {
@@ -80,9 +104,10 @@ router.get("/challenge/:id", async (req, res) => {
 
     res.render("challenge", {
       challenge,
-      submissions,
+      submission,
       coins: coinEntries,
-      isForm: challenge.status === "Open" && req.session.logged_in, // Check has submission also
+      isForm: challenge.status === "Open" && req.session.logged_in && !hasSubmission, 
+      hasSubmission,
       isEnded: challenge.status === "Ended",
       logged_in: req.session.logged_in,
     });

@@ -9,8 +9,9 @@
         <h2>Challenge {{challenge.id}} - Capital
           {{challenge.capital}}
         </h2>
-        <p>Challenge is closed to new submissions</p>
-        <p>Total submissions: {{submissions}}</p>
+        <p>Status: {{challenge.status}}</p>
+        {{!-- <p>Challenge is closed to new submissions</p> --}}
+        {{!-- <p>Total submissions: {{totalSubmissions}}</p> --}}
         
         <div class="form-outline">
           {{#each coins as |coin|}}

@@ -1,0 +1,9 @@
+<ul class="card p-2 d-flex">
+  <h2>Submitted Portfolio</h2>
+  {{#each submission.coinEntries as |coin|}}
+    <li class="card p-2 m-1">
+      <h3 class="coin-name">{{coin.name}}</h3>
+      <p class="coin-description coin-amount">Amount: {{coin.amount}} {{coin.ticker_symbol}}</p>
+    </li>
+  {{/each}}
+</ul>
