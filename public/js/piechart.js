@@ -17,6 +17,8 @@ const createPieChart = async () => {
         coins.push(coin);
     };
 
+    //Need ratio of current value * amount
+
     const data = {
         labels: [
           coins[0].name,
@@ -25,7 +27,7 @@ const createPieChart = async () => {
         ],
         datasets: [{
           label: 'Portfolio Breakdown',
-          data: [coins[0].amount, coins[1].amount, coins[2].amount],
+          data: [300, coins[1].amount, coins[2].amount],
           backgroundColor: [
             'rgb(255, 99, 132)',
             'rgb(54, 162, 235)',
