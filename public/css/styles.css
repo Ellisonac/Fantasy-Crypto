@@ -113,8 +113,6 @@ form {
     rgba(0, 0, 0, 0.6));
 }
 
-
-
 .cards:hover {
   box-shadow: 6px 6px 6px 4px #299cb9;
   background-image: linear-gradient(
