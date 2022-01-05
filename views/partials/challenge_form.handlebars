@@ -8,7 +8,7 @@
       <form class="challenge-form" data-id="{{challenge.id}}">
         <h2>Enter Challenge
           {{challenge.id}}- Capital
-          {{challenge.capital}}
+          <span id="challenge-capital">{{challenge.capital}}</span>
         </h2>
         <p>From: {{format_date challenge.time_start}} - {{format_date challenge.time_end}}</p>
         <p>Status: {{challenge.status}}</p>
@@ -29,6 +29,9 @@
             <p class="purchase" id="coin{{coin.coin_id}}-purchase">0 {{coin.ticker_symbol}}</p>
             <br/>
           {{/each}}
+          <div>
+            <p id="allocation">Not Allocated</p>
+          </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </div>
 
