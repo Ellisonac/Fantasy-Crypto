@@ -155,7 +155,8 @@ router.get("/portfolio/:id", async (req, res) => {
     const portfolio = portfolioData.get({ plain: true });
 
     if (portfolio.user_id != req.session.user_id) {
-      console.log("INVALID USER");
+      res.redirect('/profile');
+      return
     }
 
     const portfolioEntries = portfolio.portfolio_coin_entries;
