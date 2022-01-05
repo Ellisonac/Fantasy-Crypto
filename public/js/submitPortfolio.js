@@ -1,9 +1,10 @@
 let challengeForm = document.querySelector(".challenge-form");
 let inputs = document.querySelectorAll(".coin-input-amount");
-// let inputForms = document.querySelectorAll(".coin-inputs");
 let challengeFormButton = document.querySelector(".challenge-form button");
 let allocationEl = document.querySelector("#allocation");
-let capital = parseFloat(document.querySelector("#challenge-capital").innerHTML);
+let capital = parseFloat(
+  document.querySelector("#challenge-capital").innerHTML
+);
 
 const getCoinInputs = (inputs) => {
   return Array.from(inputs).map((input) => {
@@ -18,7 +19,7 @@ const getCoinInputs = (inputs) => {
       start_value,
     ];
   });
-}
+};
 
 const addPortfolio = async (e) => {
   // e.preventDefault();
@@ -52,16 +53,17 @@ const updateAllocation = () => {
     totalAllocation += coin[1];
   }
 
-  allocationEl.innerHTML = `${(totalAllocation/capital*100).toFixed(2)}% Funds Allocated`;
+  allocationEl.innerHTML = 
+    `${((totalAllocation / capital) * 100).toFixed(2)}% Funds Allocated`;
 
   if (totalAllocation > capital) {
     challengeFormButton.disabled = true;
-    allocationEl.setAttribute("style","color:red")
+    allocationEl.setAttribute("style", "color:red");
   } else {
     challengeFormButton.disabled = false;
-    allocationEl.setAttribute("style","color:black")
+    allocationEl.setAttribute("style", "color:black");
   }
-}
+};
 
 challengeFormButton.addEventListener("click", addPortfolio);
 
@@ -82,6 +84,5 @@ for (let ii = 1; ii < inputs.length + 1; ii++) {
     updateAllocation();
   });
 }
-
 
 updateAllocation();
