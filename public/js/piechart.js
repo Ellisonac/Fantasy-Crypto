@@ -8,16 +8,20 @@ const createPieChart = async () => {
         coinName = coinName.split(" ");
         let coinAmount = coinsData[i].childNodes[3].textContent;
         coinAmount = coinAmount.split(" ");
-        
+        let coinCurrVal = coinsData[i].childNodes[7].textContent;
+        coinCurrVal = coinCurrVal.split(" ");
+
+        let ratio = coinAmount[1] * coinCurrVal[2];
+
         let coin = {
             "name": coinName[1],
-            "amount": coinAmount[1]
+            "amount": coinAmount[1],
+            "currVal": coinCurrVal[1],
+            "ratio": ratio
         }
 
         coins.push(coin);
     };
-
-    //Need ratio of current value * amount
 
     const data = {
         labels: [
@@ -27,33 +31,52 @@ const createPieChart = async () => {
         ],
         datasets: [{
           label: 'Portfolio Breakdown',
-          data: [300, coins[1].amount, coins[2].amount],
+          data: [coins[0].ratio, coins[1].ratio, coins[2].ratio],
           backgroundColor: [
             'rgb(255, 99, 132)',
             'rgb(54, 162, 235)',
             'rgb(255, 205, 86)'
           ],
-          hoverOffset: 4
+          hoverOffset: 4,
+          datalabels:{
+              color: 'rgb(255, 255, 255)',
+              font: {
+                  size: 16
+              },
+              formatter: function(value, context){
+                  return context.chart.data.labels[context.dataIndex];
+              },
+          }
         }]
       };
 
     const config = {
-        type: 'pie',
-        data: data,
-        options: {
-          responsive: true,
-          radius: 450,
-          plugins: {
-            legend: {
-              position: 'top',
+      type: "pie",
+      data: data,
+      plugins: [ChartDataLabels],
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: "top",
+            labels: {
+              color: "rgb(255, 255, 255)",
+              font: {
+                  size: 16
+              }
             },
-            title: {
-              display: true,
-              text: 'Portfolio Breakdown'
-            }
-          }
+          },
+          title: {
+            color: "rgb(255, 255, 255)",
+            font:{
+                size: 16
+            },
+            display: true,
+            text: "Portfolio Breakdown",
+          },
         },
-      };
+      },
+    };
 
       var myChart = new Chart(
         document.getElementById('pie_chart'),
