@@ -12,9 +12,13 @@ const router = require("express").Router();
 
 image_urls = [
   "/assets/bitcoin.jpeg",
-  "/assets/bitcoin2.png",
-  "/assets/doge.jpg",
+  "/assets/binance.jpg",
+  "/assets/cardano.jpg",
+  "/assets/doge.webp",
   "/assets/eth.jpg",
+  "/assets/solana.jpg",
+  "/assets/tether.jpg",
+  "/assets/xrp.jpg"
 ]
 
 router.get("/", async (req, res) => {
@@ -29,10 +33,10 @@ router.get("/", async (req, res) => {
 
     for (let ii = 0; ii < challenges.length; ii++) {
       // Cyclic image style
-      // challenges[ii].image_url = image_urls[ii%image_urls.length];
+      challenges[ii].image_url = image_urls[ii%image_urls.length];
 
       // Random image style
-      challenges[ii].image_url = image_urls[Math.floor(Math.random()*image_urls.length)];
+      // challenges[ii].image_url = image_urls[Math.floor(Math.random()*image_urls.length)];
     }
 
     res.render("all_challenges", { data: challenges, logged_in });
