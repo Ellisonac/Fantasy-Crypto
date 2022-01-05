@@ -49,9 +49,6 @@ const addPortfolio = async (e) => {
   }
 };
 
-
-
-
 const updateAllocation = () => {
   const coinInputs = getCoinInputs(inputs);
 
@@ -60,8 +57,7 @@ const updateAllocation = () => {
     totalAllocation += coin[1];
   }
 
-  allocationEl.innerHTML = 
-    `${((totalAllocation / capital) * 100).toFixed(2)}% Funds Allocated`;
+  allocationEl.innerHTML = `${((totalAllocation / capital) * 100).toFixed(2)}% Funds Allocated`;
 
   if (totalAllocation > capital) {
     challengeFormButton.disabled = true;
@@ -82,77 +78,80 @@ const createAllocationChart = async () => {
 
   const coinInputs = getCoinInputs(inputs);
 
-  let alloc = coinInputs.map(coin => coin[1]);
+  let alloc = coinInputs.map((coin) => coin[1]);
 
-  alloc.push(Math.max(0,capital - alloc.reduce((a, b) => a + b, 0)))
+  alloc.push(Math.max(0, capital - alloc.reduce((a, b) => a + b, 0)));
 
-  console.log(alloc);
+  let labels = coinInputs.map((coin) => coin[3]);
 
-  let labels = coinInputs.map(coin => coin[3]);
-
-  labels.push("Unallocated")
-
+  labels.push("Unallocated");
 
   const data = {
-      labels,
-      datasets: [{
-        label: 'Allocation Breakdown',
+    labels,
+    datasets: [
+      {
+        label: "Allocation Breakdown",
         data: alloc,
         backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)',
-          'rgb(100, 100, 100)',
+          "rgb(255, 99, 132)",
+          "rgb(54, 162, 235)",
+          "rgb(255, 205, 86)",
+          "rgb(100, 100, 100)",
         ],
         hoverOffset: 4,
-        datalabels:{
-            color: 'rgb(255, 255, 255)',
-            font: {
-                size: 16
-            },
-            formatter: function(value, context){
-                return context.chart.data.labels[context.dataIndex];
-            },
-        }
-      }]
-    };
+        datalabels: {
+          color: "rgb(255, 255, 255)",
+          font: {
+            size: 16,
+          },
+          formatter: function (value, context) {
+            return context.chart.data.labels[context.dataIndex];
+          },
+        },
+      },
+    ],
+  };
 
   const config = {
     type: "pie",
     data: data,
     options: {
       responsive: true,
-      plugins: {
-        legend: {
-          position: "top",
+      
+      legend: {
           labels: {
-            color: "rgb(255, 255, 255)",
-            font: {
-                size: 16
-            }
-          },
-        },
-        title: {
-          color: "rgb(255, 255, 255)",
-          font:{
-              size: 16
-          },
-          display: true,
-          text: "Allocation Breakdown",
-        },
+              fontColor: "white",
+              fontSize: 14
+          }
       },
+      // plugins: {
+      //   legend: {
+      //     position: "top",
+      //     labels: {
+      //       fontColor: "rgb(255, 255, 255)",
+      //       font: {
+      //         size: 16,
+      //       },
+      //     },
+          
+      //   },
+      //   title: {
+      //     color: "rgb(255, 255, 255)",
+      //     font: {
+      //       size: 16,
+      //     },
+      //     display: true,
+      //     text: "Allocation Breakdown",
+      //   },
+      // },
     },
   };
 
-  allocChart = new Chart(
-    document.querySelector("#allocation-chart"),
-    config
-  );
+  allocChart = new Chart(document.querySelector("#allocation-chart"), config);
 };
 
-if(document.readyState === 'loading'){
-  document
-  .addEventListener('DOMContentLoaded', createAllocationChart);
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", createAllocationChart);
 }
 
 for (let ii = 1; ii < inputs.length + 1; ii++) {
@@ -172,11 +171,6 @@ for (let ii = 1; ii < inputs.length + 1; ii++) {
     updateAllocation();
   });
 }
-
-
-
-
-
 
 challengeFormButton.addEventListener("click", addPortfolio);
 
