@@ -1,6 +1,6 @@
 <div class="card profile-page p-2">
-  <h2>User {{user.id}}</h2>
-  <p>All Portfolios</p>
+  <h2>{{user.username}}'s Profile</h2>
+  <p>All Submitted Portfolios</p>
   <ul>
   {{#each portfolios as |portfolio|}}
     <a href="/portfolio/{{portfolio.id}}">
@@ -9,8 +9,6 @@
         <p>Status: {{portfolio.challenge.status}}</p>
       </li>
     </a>
-
-
   {{/each}}
   </ul>
 </div>
