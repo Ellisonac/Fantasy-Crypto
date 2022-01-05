@@ -2,11 +2,15 @@
   <h3>Portfolio {{portfolio.id}} - <a href="/challenge/{{portfolio.challenge_id}}">Challenge {{portfolio.challenge_id}}</a></h3>
   {{! Display Challenge link  }}
   
+  <div>
+    <canvas id="pie_chart"></canvas>
+  </div>
+
   <ul>
     {{#each coinEntries as |coin|}}
-      <li class="coin-card p-2 m-1">
-        <h3>Coin: {{coin.name}}</h3>
-        <p class="coin-description">Amount: {{coin.amount}}</p>
+      <li class="card p-2 m-1">
+        <h3 class="coin-name">Coin: {{coin.name}}</h3>
+        <p class="coin-description coin-amount">Amount: {{coin.amount}}</p>
         <p class="coin-description">Start Value: {{coin.startValue}}</p>
         <p class="coin-description">Current Value: {{coin.currentValue}}</p>
       </li>
@@ -15,3 +19,7 @@
     <p>Current Value: {{currentValue}}</p>
   </ul>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/js/piechart.js"></script>
+
