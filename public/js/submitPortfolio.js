@@ -26,8 +26,6 @@ const getCoinInputs = (inputs) => {
 };
 
 const addPortfolio = async (e) => {
-  // e.preventDefault();
-
   const challengeID = challengeForm.getAttribute("data-id");
 
   const coinInputs = getCoinInputs(inputs);
@@ -124,26 +122,6 @@ const createAllocationChart = async () => {
               fontSize: 14
           }
       },
-      // plugins: {
-      //   legend: {
-      //     position: "top",
-      //     labels: {
-      //       fontColor: "rgb(255, 255, 255)",
-      //       font: {
-      //         size: 16,
-      //       },
-      //     },
-          
-      //   },
-      //   title: {
-      //     color: "rgb(255, 255, 255)",
-      //     font: {
-      //       size: 16,
-      //     },
-      //     display: true,
-      //     text: "Allocation Breakdown",
-      //   },
-      // },
     },
   };
 
