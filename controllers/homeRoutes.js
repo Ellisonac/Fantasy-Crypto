@@ -56,10 +56,19 @@ router.get("/challenge/:id", async (req, res) => {
             model: Coin,
           },
         },
+        {
+          model: Portfolio
+        }
       ],
     });
 
+    // If logged in find if the user has a submission
+
     const challenge = challengeData.get({ plain: true });
+
+    console.log(challenge);
+
+    const submissions = challenge.portfolios.length;
 
     let coinEntries = challenge.challenge_coin_data.map((coin) => {
       return {
@@ -71,6 +80,7 @@ router.get("/challenge/:id", async (req, res) => {
 
     res.render("challenge", {
       challenge,
+      submissions,
       coins: coinEntries,
       isForm: challenge.status === "Open" && req.session.logged_in, // Check has submission also
       isEnded: challenge.status === "Ended",

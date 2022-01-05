@@ -1,6 +1,6 @@
 let challengeForm = document.querySelector(".challenge-form");
 let inputs = document.querySelectorAll(".coin-input-amount");
-let inputForms = document.querySelectorAll(".coin-inputs");
+// let inputForms = document.querySelectorAll(".coin-inputs");
 let challengeFormButton = document.querySelector(".challenge-form button");
 
 const addPortfolio = async (e) => {
@@ -19,13 +19,36 @@ const addPortfolio = async (e) => {
     headers: { "Content-Type": "application/json" },
   });
 
-  console.log(response);
-
-  challengeFormButton.removeEventListener("click", addPortfolio);
-  challengeFormButton.setAttribute("Style","background-color:green");
-  challengeFormButton.innerHTML = "Submitted!";
-  challengeFormButton.disabled = true;
+  if (response.status == 200) {
+    challengeFormButton.removeEventListener("click", addPortfolio);
+    challengeFormButton.setAttribute("Style","background-color:green");
+    challengeFormButton.innerHTML = "Submitted!";
+    challengeFormButton.disabled = true;
+  } else {
+    challengeFormButton.setAttribute("Style","background-color:red");
+    challengeFormButton.innerHTML = "Error";
+  }
 
 };
 
 challengeFormButton.addEventListener("click", addPortfolio);
+
+console.log(inputs.length);
+
+for (let ii = 1; ii < inputs.length+1; ii++) {
+
+  const coinInput = document.querySelector(`#coin${ii}-input`);
+  const coinStart = parseFloat(document.querySelector(`#coin${ii}-start`).innerHTML);
+  const coinTicker = document.querySelector(`#coin${ii}-ticker`).innerHTML;
+  const coinPurchase = document.querySelector(`#coin${ii}-purchase`);
+
+  console.log(coinInput);
+
+  coinInput.addEventListener("change",(e) => {
+    const value = coinInput.value/coinStart;
+    coinPurchase.innerHTML = `${value} ${coinTicker}`
+    
+
+  })
+
+}
