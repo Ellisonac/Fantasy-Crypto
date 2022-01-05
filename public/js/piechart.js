@@ -1,4 +1,23 @@
 const createPieChart = async () => {
+    const coinsData = document.querySelectorAll("li.card");
+
+    let coins = [];
+    for(let i = 0; i < 3; i++){
+        let coinName = coinsData[i].childNodes[1].textContent;
+        coinName = coinName.split(" ");
+        let coinAmount = coinsData[i].childNodes[3].textContent;
+        coinAmount = coinAmount.split(" ");
+        
+        let coin = {
+            "name": coinName[1],
+            "amount": coinAmount[1]
+        }
+
+        coins.push(coin);
+    };
+
+    console.log(coins);
+
     const data = {
         labels: [
           'Red',
@@ -28,7 +47,7 @@ const createPieChart = async () => {
             },
             title: {
               display: true,
-              text: 'Chart.js Pie Chart'
+              text: 'Portfolio Breakdown'
             }
           }
         },
