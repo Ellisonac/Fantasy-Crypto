@@ -1,7 +1,9 @@
 const createPieChart = async () => {
-    const coinsData = document.querySelectorAll("li.card");
+    const coinsData = document.querySelectorAll(".coin-card li");
 
     let coins = [];
+
+    console.log(coinsData);
 
     for(let i = 0; i < 3; i++){
         let coinName = coinsData[i].childNodes[1].textContent;
