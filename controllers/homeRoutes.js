@@ -28,7 +28,11 @@ router.get("/", async (req, res) => {
     );
 
     for (let ii = 0; ii < challenges.length; ii++) {
-      challenges[ii].image_url = image_urls[ii%image_urls.length];
+      // Cyclic image style
+      // challenges[ii].image_url = image_urls[ii%image_urls.length];
+
+      // Random image style
+      challenges[ii].image_url = image_urls[Math.floor(Math.random()*image_urls.length)];
     }
 
     res.render("all_challenges", { data: challenges, logged_in });
