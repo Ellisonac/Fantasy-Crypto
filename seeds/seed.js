@@ -10,6 +10,7 @@ const {
 
 const userData = require("./userData.json");
 const coinData = require("./coinData.json");
+const challengeData = require("./challengeData.json");
 const { default: axios } = require("axios");
 
 const coinToID = {
@@ -33,28 +34,31 @@ const seedDatabase = async () => {
     returning: true,
   });
 
-  const statuses = ["Open", "Closed", "Ended"];
-  const capital = [5000,10000,50000,100000];
-  let challenges = [];
-  for (let ii = 0; ii < 8; ii++) {
-    const day = Math.floor(Math.random() * 30) + 1;
-    const time_start = new Date(`January ${day}, 2022 00:00:00`);
-    const time_end = new Date(`January ${day}, 2022 23:59:59`);
-    // Add functionality for status check
+  const challenges = await Challenge.bulkCreate(challengeData, {
+    returning: true,
+  });
+  // const statuses = ["Open", "Closed", "Ended"];
+  // const capital = [5000,10000,50000,100000];
+  // let challenges = [];
+  // for (let ii = 0; ii < 8; ii++) {
+  //   const day = Math.floor(Math.random() * 30) + 1;
+  //   const time_start = new Date(`January ${day}, 2022 00:00:00`);
+  //   const time_end = new Date(`January ${day}, 2022 23:59:59`);
+  //   // Add functionality for status check
 
-    const chall = await Challenge.create(
-      {
-        capital: capital[Math.floor(Math.random() * capital.length)],
-        time_start,
-        time_end,
-        status: statuses[Math.floor(Math.random() * statuses.length)],
-      },
-      {
-        returning: true,
-      }
-    );
-    challenges.push(chall.get({ plain: true }));
-  }
+  //   const chall = await Challenge.create(
+  //     {
+  //       capital: capital[Math.floor(Math.random() * capital.length)],
+  //       time_start,
+  //       time_end,
+  //       status: statuses[Math.floor(Math.random() * statuses.length)],
+  //     },
+  //     {
+  //       returning: true,
+  //     }
+  //   );
+  //   challenges.push(chall.get({ plain: true }));
+  // }
 
   const allCoins = await Coin.bulkCreate(coinData, {
     individualHooks: true,

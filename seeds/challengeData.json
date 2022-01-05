@@ -1,0 +1,50 @@
+[
+  {
+    "capital": 50000,
+    "time_start": "January 1, 2022 00:00:00",
+    "time_end": "January 8, 2022 00:00:00",
+    "status": "Closed"
+  },
+  {
+    "capital": 10000,
+    "time_start": "January 5, 2022 00:00:00",
+    "time_end": "January 12, 2022 00:00:00",
+    "status": "Open"
+  },
+  {
+    "capital": 100000,
+    "time_start": "January 1, 2022 00:00:00",
+    "time_end": "January 5, 2022 00:00:00",
+    "status": "Ended"
+  },
+  {
+    "capital": 50000,
+    "time_start": "January 5, 2022 00:00:00",
+    "time_end": "January 11, 2022 00:00:00",
+    "status": "Open"
+  },
+  {
+    "capital": 10000,
+    "time_start": "January 2, 2022 00:00:00",
+    "time_end": "January 9, 2022 00:00:00",
+    "status": "Closed"
+  },
+  {
+    "capital": 20000,
+    "time_start": "January 1, 2022 00:00:00",
+    "time_end": "January 2, 2022 00:00:00",
+    "status": "Ended"
+  },
+  {
+    "capital": 50000,
+    "time_start": "January 5, 2022 00:00:00",
+    "time_end": "January 13, 2022 00:00:00",
+    "status": "Open"
+  },
+  {
+    "capital": 50000,
+    "time_start": "January 5, 2022 00:00:00",
+    "time_end": "January 20, 2022 00:00:00",
+    "status": "Open"
+  }
+]
