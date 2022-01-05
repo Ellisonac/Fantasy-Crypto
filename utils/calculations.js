@@ -44,6 +44,44 @@ const getCoinValues = async (challengeCoins) => {
   return challengeCoins;
 };
 
+const getHistoricCoinValues = async (challengeCoins,date,type) => {
+
+  let dateStr =  Math.floor(date.getTime()/1000);
+
+
+  console.log(dateStr);
+  for (let ii = 0; ii < challengeCoins.length; ii++) {
+    const coin = challengeCoins[ii];
+    
+    let coinUrl = `https://api.coinpaprika.com/v1/coins/${
+      coinToID[coin.coin.name]
+    }/ohlcv/historical?quote=USD&start=${dateStr}&end=${dateStr}`;
+    
+    try {
+      const response = await axios.get(coinUrl);
+      const coinData = response.data;
+
+      if (type === "start") {
+        coin.start_value = coinData[0].open.toFixed(4);
+      } else {
+        coin.end_value = coinData[0].close.toFixed(4);
+      }
+
+      challengeCoins[ii] = {...coin};
+      
+    } catch (err) {
+      console.log(err);
+      // Pause for a moment and try again
+      //setTimeout(singleCall(coinID),1000);
+    }
+  }
+
+  console.log(challengeCoins[1]);
+  return challengeCoins;
+
+
+}
+
 const evaluatePortfolio = (portfolioEntries, coins) => {
   let values = [];
   let endTotal = 0;
@@ -81,4 +119,5 @@ const evaluatePortfolio = (portfolioEntries, coins) => {
 module.exports = {
   evaluatePortfolio,
   getCoinValues,
+  getHistoricCoinValues
 };

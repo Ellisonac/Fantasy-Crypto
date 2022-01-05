@@ -6,7 +6,7 @@ const {
   Portfolio_Coin_Entry,
   User,
 } = require("../models");
-const { evaluatePortfolio, getCoinValues } = require("../utils/calculations");
+const { evaluatePortfolio, getCoinValues, getHistoricCoinValues } = require("../utils/calculations");
 
 const router = require("express").Router();
 
@@ -171,6 +171,13 @@ router.get("/portfolio/:id", async (req, res) => {
 
     // Update coin values with current api values
     coinEntries = await getCoinValues(coinEntries);
+
+    let today = new Date();
+    today.setHours(0,0,0,0);
+    if (coinEntries.end_value === '-1' && portfolio.challenge.time_end < today) {
+      coinEntries = await getHistoricCoinValues(coinEntries,portfolio.challenge.time_end);
+    }
+    
 
     const coins = evaluatePortfolio(portfolioEntries, coinEntries);
 

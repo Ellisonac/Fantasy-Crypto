@@ -115,6 +115,7 @@ const seedDatabase = async () => {
   }
 
   // Populate random portfolio amounts
+  // TODO change to seed based on values not amounts
   for (const portfolio of portfolios) {
     for (const coin of coins) {
       await Portfolio_Coin_Entry.create({
