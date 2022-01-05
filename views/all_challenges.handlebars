@@ -1,15 +1,15 @@
 <ul class="challenge-list">
-  <div class="container mt-2 d-flex row g-0">
+  <div class="container d-flex row g-0">
   {{#each data as |challenge|}}
     <div class="col-md-3 border-right">
       <div class="cards">
         <a href="challenge/{{challenge.id}}">
           <li><img src="{{challenge.image_url}}" class="card-img-top">
             <div class="p-4 text-center">
-              <h5 class="challenge-title">Challenge {{challenge.id}}</h5>
-              <p class="challenge-status">{{challenge.status}}</p>
-              <p>Start: {{format_date challenge.time_start}}</p>
-              <p>End: {{format_date challenge.time_end}}</p>
+              <h5 class="challenge-title card-header">Challenge {{challenge.id}}</h5>
+              <p class="challenge-status border-bottom border-dark border-2">Status: {{challenge.status}}</p>
+              <p class="challenge-status border-bottom border-dark border-2">Start: {{format_date challenge.time_start}}</p>
+              <p class="challenge-status border-bottom border-dark border-2">End: {{format_date challenge.time_end}}</p>
             </div>
           </li>
         </a>

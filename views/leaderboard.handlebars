@@ -1,13 +1,16 @@
-<div class="card p-2">
-  <h2>Leaderboard!</h2>
-  <p>Closed Challenge Results</p>
-  <ul>
+<div class="leader-card text-center mx-auto" style="width: 600px;">
+    <h2 class="card-header">Leaderboard!</h4>
+    <p>Closed Challenge Results</p>
+</div>
+  <div class="card-body mx-auto" style="width: 600px;">
+    <ul>
     {{#each challenges as |challenge|}}
-      <li class="card p-2 m-1">
-        <h2>Challenge {{challenge.id}}</h2>
+      <li class="leader-list">
+        <h3 class="challenge-card-header text-center">Challenge {{challenge.id}}</h2>
         <p>Top User: {{challenge.topPortfolio.user_id}}</p>
         <p>Top Portfolio Gains: {{challenge.maxGain}}</p>
+        <hr class="my-4">
       </li>
     {{/each}}
-  </ul>
-</div>
+    </ul>
+  </div>
