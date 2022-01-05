@@ -21,6 +21,11 @@ router.post("/", async (req, res) => {
 
     let coinEntries = [];
     for (coin of req.body.coinInputs) {
+      console.log({
+        coin_id: coin[0],
+        portfolio_id: portID,
+        amount: coin[1],
+      },);
       const newCoinEntry = await Portfolio_Coin_Entry.create(
         {
           coin_id: coin[0],
