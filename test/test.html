@@ -31,62 +31,40 @@
     </nav>
   </header>
 
-  <ul class="challenge-list">
-  <div class="container mt-3 d-flex justify-content-center">
-    <div class="row g-0">
-        <div class="col-md-3 border-right">
-            <div class="cards">
-              {{#each challenges as |challenge|}}
-              <li>
-                <div class="first p-4 text-center"> <img src="../public/assets/bitcoin.jpeg" class="card-img-top"/>
-                    <h5 class="challenge-title">Challenge {{challenge.id}}</h5>
-                    <p class="challenge-status">{{challenge.status}}</p>
-                </div>
-              </li>
-              {{/each}}
-            </div>
-        </div>
-        <div class="col-md-3 border-right">
-            <div class="cards">
-              {{#each challenges as |challenge|}}
-              <li>
-                <div class="second p-4 text-center"> <img src="../public/assets/eth.jpg" class="card-img-top"/>
-                  <h5 class="challenge-title">Challenge {{challenge.id}}</h5>
-                  <p class="challenge-status">{{challenge.status}}</p>
-                </div>
-              <li>
-              {{/each}}
-            </div>
-        </div>
-        <div class="col-md-3 border-right">
-            <div class="cards">
-              {{#each challenges as |challenge|}}
-              <li>
-                <div class="third p-4 text-center"> <img src="../public/assets/doge.jpg" class="card-img-top"/>
-                  <h5 class="challenge-title">Challenge {{challenge.id}}</h5>
-                  <p class="challenge-status">{{challenge.status}}</p>
-                </div>
-              </li>
-              {{/each}}
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="cards">
-              {{#each challenges as |challenge|}}
-              <li>
-                <div class="fourth p-4 text-center"> <img src="../public/assets/bitcoin2.png" class="card-img-top"/>
-                  <h5 class="challenge-title">Challenge {{challenge.id}}</h5>
-                  <p class="challenge-status">{{challenge.status}}</p>
-                </div>
-              </li>
-              {{/each}}
-            </div>
-        </div>
-    </div>
-</div>
-</ul>
+  <div class="value-container">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="portfolio jumbotron">
+          <h3 class="display-6">Portfolio {{portfolio.id}} - <a href="/challenge/{{portfolio.challenge_id}}">Challenge {{portfolio.challenge_id}}</a></h3>
+            <hr class="my-4">
+            {{! Display Challenge link  }}
+          </div>
   
-  <script src="/js/login.js"></script>
+          <ul class="coin-card">
+            {{#each coinEntries as |coin|}}
+            <li>
+              <h3 class="coin-name">Coin: {{coin.name}}</h3>
+              <p class="coin-description coin-amount">Amount: {{coin.amount}}</p>
+              <p class="coin-description">Start Value: {{coin.startValue}}</p>
+              <p class="coin-description">Current Value: {{coin.currentValue}}</p>
+            </li>
+            {{/each}}
+          </ul>
+          <div class="values-card">
+            <p>Start Value: {{startValue}}</p>
+            <p>Current Value: {{currentValue}}</p>
+          </div>
+      </div>
+    
+  <div class="col-sm-6 ml-auto">
+      <canvas id="pie_chart"></canvas><p class="chart">Chart Here</p>
+  </div>
+  </div>
+</div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/js/piechart.js"></script>
+
   <footer>
     <p>FantasyCrypto</p>
   </footer>
