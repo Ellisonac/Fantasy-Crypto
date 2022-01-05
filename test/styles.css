@@ -98,3 +98,80 @@ form {
     padding-top: 40px;
     list-style: none;
 }
+
+.value-container {
+    max-width: 50%;
+}
+
+.portfolio {
+    margin-bottom: 10px;
+    margin-top: 5px;
+    padding: 5px;
+    margin-left: 10px;
+    border-radius: 15px;
+    /* max-width: 100%; */
+    background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.8),
+    rgba(168, 39, 39, 0.08),
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.6));
+    box-shadow: 4px 4px 4px 4px #299cb9;
+    font-family: "Saira Condensed", sans-serif;
+    font-size: 25px;
+
+}
+
+.coin-card {
+    margin-bottom: 10px;
+    margin-left: 10px;
+    border-radius: 15px;
+    padding-left: 10px;
+    /* max-width: 100%; */
+    background-image: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.8),
+        rgba(175, 175, 175, 0.8),
+        rgba(255, 255, 255, 0.8),
+        rgba(255, 255, 255, 0.6));
+    box-shadow: 4px 4px 4px 4px #299cb9;
+    font-family: "Saira Condensed", sans-serif;
+    font-size: 20px;
+    list-style: none;
+}
+
+.coin-name {
+    color: white;
+    font-family: "Saira Condensed", sans-serif;
+    font-size: 30px;
+}
+
+.values-card {
+    margin-bottom: 10px;
+    margin-left: 10px;
+    border-radius: 15px;
+    padding-left: 10px;
+    /* max-width: 100%; */
+    background-image: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.8),
+        rgba(175, 175, 175, 0.8),
+        rgba(255, 255, 255, 0.8),
+        rgba(255, 255, 255, 0.6));
+    box-shadow: 4px 4px 4px 4px #299cb9;
+    font-family: "Saira Condensed", sans-serif;
+    font-size: 20px;
+    list-style: none;
+}
+
+.chart {
+    color: white;
+}
+
+.row {
+    min-height: 100vh;
+}
+
+.flex-fill {
+    flex:1 1 auto;
+}
