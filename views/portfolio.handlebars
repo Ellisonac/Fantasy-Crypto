@@ -2,7 +2,7 @@
   <h3>Portfolio {{portfolio.id}} - <a href="/challenge/{{portfolio.challenge_id}}">Challenge {{portfolio.challenge_id}}</a></h3>
   {{! Display Challenge link  }}
   
-  <div>
+  <div class="d-flex">
     <canvas id="pie_chart"></canvas>
   </div>
 
@@ -22,5 +22,6 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0-rc.1/chartjs-plugin-datalabels.min.js" integrity="sha512-+UYTD5L/bU1sgAfWA0ELK5RlQ811q8wZIocqI7+K0Lhh8yVdIoAMEs96wJAIbgFvzynPm36ZCXtkydxu1cs27w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="/js/piechart.js"></script>
 

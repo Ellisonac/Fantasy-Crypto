@@ -37,27 +37,46 @@ const createPieChart = async () => {
             'rgb(54, 162, 235)',
             'rgb(255, 205, 86)'
           ],
-          hoverOffset: 4
+          hoverOffset: 4,
+          datalabels:{
+              color: 'rgb(255, 255, 255)',
+              font: {
+                  size: 16
+              },
+              formatter: function(value, context){
+                  return context.chart.data.labels[context.dataIndex];
+              },
+          }
         }]
       };
 
     const config = {
-        type: 'pie',
-        data: data,
-        options: {
-          responsive: true,
-          radius: 450,
-          plugins: {
-            legend: {
-              position: 'top',
+      type: "pie",
+      data: data,
+      plugins: [ChartDataLabels],
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: "top",
+            labels: {
+              color: "rgb(255, 255, 255)",
+              font: {
+                  size: 16
+              }
             },
-            title: {
-              display: true,
-              text: 'Portfolio Breakdown'
-            }
-          }
+          },
+          title: {
+            color: "rgb(255, 255, 255)",
+            font:{
+                size: 16
+            },
+            display: true,
+            text: "Portfolio Breakdown",
+          },
         },
-      };
+      },
+    };
 
       var myChart = new Chart(
         document.getElementById('pie_chart'),
