@@ -1,7 +1,5 @@
 const {
-  Challenge,
   Portfolio,
-  Challenge_Coin_Data,
   Portfolio_Coin_Entry,
 } = require("../../models");
 

@@ -2,24 +2,32 @@
     <div class="row">
       <div class="col-sm-4">
         <div class="portfolio jumbotron">
-          <h3 class="display-6">Portfolio {{portfolio.id}} - <a href="/challenge/{{portfolio.challenge_id}}">Challenge {{portfolio.challenge_id}}</a></h3>
+          <h3 class="display-6 text-center">Portfolio {{portfolio.id}}</br><a href="/challenge/{{portfolio.challenge_id}}">Challenge {{portfolio.challenge_id}}</a></br>Status: {{portfolio.challenge.status}}</h3>
             <hr class="my-4">
             {{! Display Challenge link  }}
           </div>
-  
           <ul class="coin-card">
             {{#each coinEntries as |coin|}}
             <li>
               <h3 class="coin-name">Coin: {{coin.name}}</h3>
               <p class="coin-description coin-amount">Amount: {{coin.amount}}</p>
               <p class="coin-description">Start Value: {{coin.startValue}}</p>
-              <p class="coin-description">Current Value: {{coin.currentValue}}</p>
+              {{#if ../isEnded}}
+                <p class="coin-description">End Value: {{coin.endValue}}</p>
+              {{else}}
+                <p class="coin-description">Current Value: {{coin.currentValue}}</p>
+              {{/if}}
             </li>
             {{/each}}
           </ul>
           <div class="values-card">
             <p>Start Value: {{startValue}}</p>
-            <p>Current Value: {{currentValue}}</p>
+            {{#if isEnded}}
+              <p>End Value: {{endValue}}</p>
+            {{else}}
+              <p>Current Value: {{currentValue}}</p>
+            {{/if}}
+            <p>Change: {{gain}}</p>
           </div>
       </div>
     
