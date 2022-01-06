@@ -1,5 +1,5 @@
 const createPieChart = async () => {
-    const coinsData = document.querySelectorAll("li.card");
+    const coinsData = document.querySelectorAll(".coin-card li");
 
     let coins = [];
 

@@ -6,7 +6,7 @@ const {
   Portfolio_Coin_Entry,
   User,
 } = require("../models");
-const { evaluatePortfolio, getCoinValues } = require("../utils/calculations");
+const { evaluatePortfolio, getCoinValues, getHistoricCoinValues } = require("../utils/calculations");
 
 const router = require("express").Router();
 
@@ -21,16 +21,19 @@ image_urls = [
   "/assets/xrp.jpg",
 ];
 
+// Main dashboard get route
 router.get("/", async (req, res) => {
   try {
     let logged_in = req.session.logged_in;
 
+    // Get and serialize all challenges
     let challengeData = await Challenge.findAll();
 
     let challenges = challengeData.map((challenge) =>
       challenge.get({ plain: true })
     );
 
+    // Assign image_urls to each challenge
     for (let ii = 0; ii < challenges.length; ii++) {
       // Cyclic image style
       challenges[ii].image_url = image_urls[ii % image_urls.length];
@@ -48,6 +51,7 @@ router.get("/", async (req, res) => {
 
 router.get("/challenge/:id", async (req, res) => {
   try {
+    // Get current challenge and coin values
     const challengeData = await Challenge.findByPk(req.params.id, {
       include: [
         {
@@ -55,9 +59,6 @@ router.get("/challenge/:id", async (req, res) => {
           include: {
             model: Coin,
           },
-        },
-        {
-          model: Portfolio,
         },
       ],
     });
@@ -81,10 +82,10 @@ router.get("/challenge/:id", async (req, res) => {
       });
     }
 
+    // Get submission status and information for user
     let submission;
     let hasSubmission = false;
     if (portfolioData.length > 0) {
-      console.log(portfolioData);
       submission = portfolioData[0].get({ plain: true });
       submission.coinEntries = submission.portfolio_coin_entries.map(
         (entry) => {
@@ -96,9 +97,9 @@ router.get("/challenge/:id", async (req, res) => {
         }
       );
       hasSubmission = true;
-      console.log(submission);
     }
 
+    // Serialize and reorgainize coin entries for challenges
     let coinEntries = challenge.challenge_coin_data.map((coin) => {
       return {
         ...coin,
@@ -124,9 +125,15 @@ router.get("/challenge/:id", async (req, res) => {
 });
 
 // Get an individual portfolio,
-// TODO check if user is correct user
 router.get("/portfolio/:id", async (req, res) => {
+  // Redirect if no user is logged in
+  if (!req.session.logged_in) {
+    res.redirect('/login');
+    return
+  }
+
   try {
+    // Find requested portfolio data
     const portfolioData = await Portfolio.findByPk(req.params.id, {
       include: [
         {
@@ -150,8 +157,10 @@ router.get("/portfolio/:id", async (req, res) => {
 
     const portfolio = portfolioData.get({ plain: true });
 
+    // Return a user to their profile if they are accessing the wrong portfolio
     if (portfolio.user_id != req.session.user_id) {
-      console.log("INVALID USER");
+      res.redirect('/profile');
+      return
     }
 
     const portfolioEntries = portfolio.portfolio_coin_entries;
@@ -161,13 +170,25 @@ router.get("/portfolio/:id", async (req, res) => {
     // Update coin values with current api values
     coinEntries = await getCoinValues(coinEntries);
 
+    let today = new Date();
+    today.setHours(0,0,0,0);
+    if (coinEntries.end_value === '-1' && portfolio.challenge.time_end < today) {
+      coinEntries = await getHistoricCoinValues(coinEntries,portfolio.challenge.time_end);
+    }
+    
+
     const coins = evaluatePortfolio(portfolioEntries, coinEntries);
+
+    console.log(portfolio.challenge.status === "Ended");
 
     res.render("portfolio", {
       portfolio: portfolio,
       coinEntries: coins.values,
-      startValue: coins.startValue,
-      currentValue: coins.currentValue,
+      startValue: `$${coins.startValue.toFixed(2)}`,
+      currentValue: `$${coins.currentValue.toFixed(2)}`,
+      endValue: `$${coins.endValue.toFixed(2)}`,
+      gain: `$${(coins.endValue-coins.startValue).toFixed(2)}`,
+      isEnded: portfolio.challenge.status === "Ended",
       logged_in: req.session.logged_in,
     });
   } catch (err) {
@@ -177,7 +198,14 @@ router.get("/portfolio/:id", async (req, res) => {
 });
 
 router.get("/profile/", async (req, res) => {
+  // Redirect if no user is logged in
+  if (!req.session.logged_in) {
+    res.redirect('/login');
+    return
+  }
+
   try {
+    // Get user and submitted portfolios
     const userData = await User.findByPk(req.session.user_id, {
       include: [
         {
@@ -210,9 +238,14 @@ router.get("/leaderboard", async (req, res) => {
       include: [
         {
           model: Portfolio,
-          include: {
-            model: Portfolio_Coin_Entry,
-          },
+          include: [
+            {
+              model: Portfolio_Coin_Entry,
+            },  
+            {
+              model: User,
+            }
+          ]
         },
         {
           model: Challenge_Coin_Data,
@@ -227,23 +260,34 @@ router.get("/leaderboard", async (req, res) => {
       challenge.get({ plain: true })
     );
 
+    // Collect all ended challenges for the leaderboard
     let closedChallenges = [];
     for (const challenge of challenges) {
       if (challenge.status !== "Ended" || !challenge.portfolios) {
         continue;
       }
 
-      challenge.maxGain = -10000;
+      // Get current valuation of coin values per challenge
+      const coinValues = await getCoinValues(challenge.challenge_coin_data);
+
+      challenge.maxGain = Number.NEGATIVE_INFINITY;
       for (const portfolio of challenge.portfolios) {
         const evaluation = await evaluatePortfolio(
           portfolio.portfolio_coin_entries,
-          await getCoinValues(challenge.challenge_coin_data)
+          coinValues
         );
-        console.log(evaluation);
+        
+        // Track top portfolio evaluation
         if (evaluation.gain > challenge.maxGain) {
           challenge.maxGain = evaluation.gain;
           challenge.topPortfolio = portfolio;
+          challenge.topPortfolio.username = portfolio.user.username;
         }
+      }
+
+      // Skip adding challenge if no high score
+      if (challenge.maxGain === Number.NEGATIVE_INFINITY) {
+        continue
       }
 
       closedChallenges.push(challenge);
