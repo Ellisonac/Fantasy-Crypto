@@ -1,14 +1,35 @@
-<div class="card profile-page p-2">
-  <h2>{{user.username}}'s Profile</h2>
-  <p>All Submitted Portfolios</p>
-  <ul>
-  {{#each portfolios as |portfolio|}}
-    <a href="/portfolio/{{portfolio.id}}">
-      <li class="card p-2 m-1">
-        <h3>Challenge {{portfolio.challenge_id}}</h3>
-        <p>Status: {{portfolio.challenge.status}}</p>
-      </li>
-    </a>
-  {{/each}}
-  </ul>
+<div class="container">
+  <div class="row gutters">
+    <div class="col-lg-3">
+      <div class="profile-card">
+        <div class="card-body">
+            <div class="user-profile">
+              <div class="user-avatar">
+                <img src="../public/assets/cardano.jpg" class="card-img-top">
+              </div>
+              <h5 class="user-name">{{user.username}}'s Profile</h5>
+            </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row gutters">
+      <div class="col-xl-11 justify-content-center">
+      <div class="all-profile-card card-body" style="width:40rem;">
+              <h6 class="all-portfolios font-weight-bold">All Submitted Portfolios</h6>
+      </div>
+        <ul class="portfolios">
+          {{#each portfolios as |portfolio|}}
+            <a href="/portfolio/{{portfolio.id}}">
+              <li class="portfolio-card text-center" style="width:40rem;">
+                <h3>Challenge {{portfolio.challenge_id}}</h3>
+                  <hr class="my-2">
+                  <p>Status: {{portfolio.challenge.status}}</p>
+              </li>
+              </a>
+              </ul>
+          {{/each}}
+      </div>
+    </div>
+  </div>
 </div>

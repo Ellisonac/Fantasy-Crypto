@@ -298,8 +298,11 @@ form {
 }
 
 .form-control {
+  margin-left: 10px;
+  max-width: 92.5%;
   margin-bottom: 10px;
   margin-top: 10px;
+  box-shadow: 2px 2px 10px 2px black;
 }
 
 #enter-challenge {
@@ -309,4 +312,58 @@ form {
 
 .coin-ticker {
   padding-bottom: 0px;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 20vh;
+  object-fit: cover;
+  padding-bottom: 20px;
+  border-radius: 8px;
+}
+
+.profile-card {
+  margin-top: 15px;
+  border-radius: 5px;
+  border: 0;
+}
+
+.user-name {
+  font-size: 30px;
+  text-align: center;
+  font-style: bold;
+}
+
+.portfolio-card {
+  list-style: none;
+  margin-bottom: 3px;
+  border-radius: 5px;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.9),
+      rgba(175, 175, 175, 1),
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 0.9));
+  box-shadow: 2px 2px 8px 2px #299cb9;
+  font-family: "Saira Condensed", sans-serif;
+  list-style: none;
+}
+
+.all-profile-card {
+  margin-top: 15px;
+  border-radius: 5px;
+  border: 0;
+  margin-left: 39px;
+  margin-bottom: 5px;
+}
+
+.all-portfolios {
+  font-style: bold;
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 0px;
+}
+
+.portfolio-card p {
+  font-size: 20px;
 }
