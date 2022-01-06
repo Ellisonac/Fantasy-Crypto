@@ -1,35 +1,26 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-3">
-      <div class="profile-card">
-        <div class="card-body">
-            <div class="user-profile">
-              <div class="user-avatar">
-                <img src="/assets/cardano.jpg" class="card-img-top">
-              </div>
-              <h5 class="user-name">{{user.username}}'s Profile</h5>
-            </div>
+<div class="container d-flex">
+    <div class="col-lg-3 profile-card card-body">
+      <div class="user-profile">
+        <div class="user-avatar">
+          <img src="/assets/cardano.jpg" class="card-img-top">
         </div>
+        <h5 class="user-name">{{user.username}}'s Profile</h5>
       </div>
     </div>
-  </div>
-    <div class="row">
-      <div class="col-lg-9 justify-content-center">
+    <div class="col-lg-9 justify-content-center">
       <div class="all-profile-card card-body" style="width:40rem;">
-              <h6 class="all-portfolios font-weight-bold">All Submitted Portfolios</h6>
+        <h6 class="all-portfolios font-weight-bold">All Submitted Portfolios</h6>
       </div>
-        <ul class="portfolios">
-          {{#each portfolios as |portfolio|}}
-            <a href="/portfolio/{{portfolio.id}}">
-              <li class="portfolio-card text-center" style="width:40rem;">
-                <h3>Challenge {{portfolio.challenge_id}}</h3>
-                  <hr class="my-2">
-                  <p>Status: {{portfolio.challenge.status}}</p>
-              </li>
-              </a>
-              </ul>
-          {{/each}}
-      </div>
+      <ul class="portfolios">
+        {{#each portfolios as |portfolio|}}
+          <a href="/portfolio/{{portfolio.id}}">
+            <li class="portfolio-card text-center" style="width:40rem;">
+              <h3>Challenge {{portfolio.challenge_id}}</h3>
+                <hr class="my-2">
+                <p>Status: {{portfolio.challenge.status}}</p>
+            </li>
+          </a>
+        {{/each}}
+        </ul>
     </div>
-  </div>
 </div>
