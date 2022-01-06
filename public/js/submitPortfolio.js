@@ -76,6 +76,8 @@ const createAllocationChart = async () => {
 
   const coinInputs = getCoinInputs(inputs);
 
+  console.log(coinInputs);
+
   let alloc = coinInputs.map((coin) => coin[1]);
 
   alloc.push(Math.max(0, capital - alloc.reduce((a, b) => a + b, 0)));
