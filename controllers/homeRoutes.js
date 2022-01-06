@@ -176,10 +176,14 @@ router.get("/portfolio/:id", async (req, res) => {
       coinEntries = await getHistoricCoinValues(coinEntries,portfolio.challenge.time_end);
     }
     
-
     const coins = evaluatePortfolio(portfolioEntries, coinEntries);
 
-    console.log(portfolio.challenge.status === "Ended");
+    let gain;
+    if (portfolio.challenge.status === "Ended") {
+      gain = `$${(coins.endValue-coins.startValue).toFixed(2)}`;
+    } else {
+      gain = `$${(coins.currentValue-coins.startValue).toFixed(2)}`;
+    }
 
     res.render("portfolio", {
       portfolio: portfolio,
@@ -187,7 +191,7 @@ router.get("/portfolio/:id", async (req, res) => {
       startValue: `$${coins.startValue.toFixed(2)}`,
       currentValue: `$${coins.currentValue.toFixed(2)}`,
       endValue: `$${coins.endValue.toFixed(2)}`,
-      gain: `$${(coins.endValue-coins.startValue).toFixed(2)}`,
+      gain,
       isEnded: portfolio.challenge.status === "Ended",
       logged_in: req.session.logged_in,
     });
