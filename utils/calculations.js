@@ -27,8 +27,6 @@ const getCoinValues = async (challengeCoins) => {
       console.log(`${coin.coin.name} Request Done`);
       const coinData = response.data;
 
-      console.log(coinData[0]);
-
       challengeCoins[ii] = {
         ...coin,
         current_value: coinData[0].quotes.USD.price.toFixed(4),
@@ -87,7 +85,6 @@ const getHistoricCoinValues = async (challengeCoins,date,type) => {
     }
   }
 
-  console.log(challengeCoins[1]);
   return challengeCoins;
 
 
@@ -123,6 +120,7 @@ const evaluatePortfolio = (portfolioEntries, coins) => {
     values,
     startValue: startTotal,
     currentValue: currentTotal,
+    endValue: endTotal,
     gain: currentTotal - startTotal,
   };
 };

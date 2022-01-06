@@ -86,7 +86,6 @@ router.get("/challenge/:id", async (req, res) => {
     let submission;
     let hasSubmission = false;
     if (portfolioData.length > 0) {
-      console.log(portfolioData);
       submission = portfolioData[0].get({ plain: true });
       submission.coinEntries = submission.portfolio_coin_entries.map(
         (entry) => {
@@ -98,7 +97,6 @@ router.get("/challenge/:id", async (req, res) => {
         }
       );
       hasSubmission = true;
-      console.log(submission);
     }
 
     // Serialize and reorgainize coin entries for challenges
@@ -181,11 +179,16 @@ router.get("/portfolio/:id", async (req, res) => {
 
     const coins = evaluatePortfolio(portfolioEntries, coinEntries);
 
+    console.log(portfolio.challenge.status === "Ended");
+
     res.render("portfolio", {
       portfolio: portfolio,
       coinEntries: coins.values,
-      startValue: coins.startValue,
-      currentValue: coins.currentValue,
+      startValue: `$${coins.startValue.toFixed(2)}`,
+      currentValue: `$${coins.currentValue.toFixed(2)}`,
+      endValue: `$${coins.endValue.toFixed(2)}`,
+      gain: `$${(coins.endValue-coins.startValue).toFixed(2)}`,
+      isEnded: portfolio.challenge.status === "Ended",
       logged_in: req.session.logged_in,
     });
   } catch (err) {

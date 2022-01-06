@@ -106,9 +106,10 @@ const seedDatabase = async () => {
 
   // Populate portfolios and assign to random users/challenges
   let portfolios = [];
-  for (let ii = 0; ii < users.length * 3; ii++) {
+  let perUser = 4;
+  for (let ii = 0; ii < users.length * perUser; ii++) {
     const port = await Portfolio.create({
-      user_id: Math.floor(ii / 3) + 1,
+      user_id: Math.floor(ii % perUser) + 1,
       challenge_id:
         challenges[Math.floor(Math.random() * challenges.length)].id,
     });
@@ -117,12 +118,14 @@ const seedDatabase = async () => {
 
   // Populate random portfolio amounts
   // TODO change to seed based on values not amounts
+  let snapshot = [47834,.17,3772]
+
   for (const portfolio of portfolios) {
     for (const coin of coins) {
       await Portfolio_Coin_Entry.create({
         portfolio_id: portfolio.id,
         coin_id: coin.id,
-        amount: Math.random() * 10,
+        amount: Math.random() * 10000 / snapshot[coin.id-1],
       });
     }
   }
